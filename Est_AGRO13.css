@@ -1,0 +1,198 @@
+	
+	h1 {
+	font-size: 40pt;
+	color:black;
+	text-align: center;
+	background-image: url(file:Imagenes/xsxs.jpg);
+	}
+	
+	@font-face{
+	font-family:Arial;
+		}
+
+
+div{
+font-family:FteLambo;
+}
+
+
+#container{
+ background-image: url(Imagenes/back.jpg);
+	width:80%;
+	margin: 0px auto;
+	text-aling: left;
+	}
+
+
+
+
+
+nav{
+    -webkit-border-radius:10px;
+    border-radius:100px;
+    background-image: url(file:Imagenes/header.jpg);
+    background-image: linear-gradient(top, #FFF, #CCC);
+    overflow:hidden;
+	text-align:center;
+    padding:15px;
+    width:1350px;
+}
+
+nav ul{
+    list-style:none;
+    margin:0 10px 0 10px;
+    padding:0;
+}
+
+
+nav ul li{
+   
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    float:left;
+    font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+    font-size:5px;
+    font-weight:bold;
+    margin-right:5px;
+    text-shadow: 0px 1px 0px #7F0DC1;
+	}
+	
+nav ul li a{
+    color:#000000;
+    display:block;
+    padding:10px;
+    text-decoration:none;
+    -webkit-transition: 0.4s linear all;
+    -moz-transition: 0.4s linear all;
+    -o-transition: 0.4s linear all;
+    transition: 0.4s linear all;
+}
+
+nav ul li:hover{
+   
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to( #E3E3E3));
+    background-image: linear-gradient(top, #FFF, #E3E3E3);
+    -webkit-box-shadow:  1px -1px 0px #999;
+    box-shadow:  1px -1px 0px #999;
+    border:1px solid #15EAF5;
+}
+nav ul li a:hover {
+    color:#FF0000;
+}
+
+#footer {
+	border-color: grey;
+	border-style: double;
+	
+}
+
+
+
+
+
+
+body {
+	background-image: url("Imagenes/amarillo.jpg");
+	image-aling: center;
+	font-text: yellow;
+	}
+
+
+#header{
+
+	text-aling:center;
+	width:100%;
+	height:89px;
+	margin:0px;
+	padding: 10px 0 0 0;
+	Color: #999999;
+
+}
+
+ #header.principal {
+ 	background:url(Imagenes/header.jpg);
+	pading-top:100px;
+ 
+}
+
+
+a {
+	font-size: 18pt;
+	text-aling: center;
+	color:#666666;
+	}
+	
+	
+cite { 
+	font-size: 18pt;
+	color:#999999;
+	align: center;
+	}
+	
+	
+		
+p {
+	font-size: 20pt;
+	color: yellow;
+	text-align: center;
+	}
+	
+	
+h2 {
+	Font-size: 24pt;
+	color:#CCCCCC;
+	text-align: center;
+	}
+	
+	
+h3 {
+	font-size: 20pt;
+	color: yellow;
+	text-align: center;
+	}
+	
+	
+h4 {
+	font-size: 18pt;
+	color: silver;
+	text-align: center;
+	}	
+	
+	
+	
+	img{
+display:block;
+margin:auto;
+}
+
+
+video  {
+	display: block;
+margin: center;
+	
+	}
+	
+	
+		
+	UL  li {
+ 		list-style-tipe: square;
+		list-style-image: url ("../Imagenes/lambo.jpg");
+		font-size:18px;
+		list-style-position: outside;
+		}
+		
+		
+		table{
+		font-size:18px;
+		color:#FFFF00;
+		text-aling: center;
+		
+		}
+		
+		Th{
+	font-size: 18pt;
+	color: silver;
+	text-silver: center;
+	
+	}

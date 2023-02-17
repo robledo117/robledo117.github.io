@@ -1,0 +1,6 @@
+
+
+
+Body {Background_image:="Imagenes/back.jpg";
+      Background_repeat: norepeat;
+      Background_position: 50% 50%
