@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Examen de Física</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      padding: 30px;
+      background: linear-gradient(to right, #e0f7fa, #fffde7);
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #00796b;
+    }
+
+    .pregunta {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #fff;
+      border-left: 10px solid #4dd0e1;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .pregunta p {
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 15px;
+      background: #ff6f00;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff8f00;
+    }
+
+    #resultado {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 30px;
+      color: #4a148c;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #4dd0e1;
+    }
+
+    .examen-container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    #volverInicio {
+      display: none;
+      background: #388e3c;
+    }
+
+    #volverInicio:hover {
+      background: #43a047;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Formulario para ingresar el nombre -->
+<div id="formulario-nombre" style="text-align:center; margin-bottom: 30px;">
+  <h2>¡Hola! ¿Cuál es tu nombre?</h2>
+  <input type="text" id="nombre-nino" placeholder="Escribe tu nombre aquí">
+  <button onclick="iniciarExamen()">Comenzar</button>
+</div>
+
+<!-- Contenedor del examen -->
+<div class="examen-container" id="examen-completo" style="display: none;">
+  <h1>Examen Básico de Física</h1>
+
+  <div class="pregunta">
+    <p>1. ¿Qué es la gravedad?</p>
+    <label><input type="radio" name="p1" value="a"> Una fuerza que nos empuja hacia arriba</label>
+    <label><input type="radio" name="p1" value="b"> Una fuerza que nos mantiene en el suelo</label>
+    <label><input type="radio" name="p1" value="c"> Un tipo de energía</label>
+  </div>
+
+  <div class="pregunta">
+    <p>2. ¿Cuál es la unidad de medida de la fuerza?</p>
+    <label><input type="radio" name="p2" value="a"> Metro</label>
+    <label><input type="radio" name="p2" value="b"> Newton</label>
+    <label><input type="radio" name="p2" value="c"> Kilogramo</label>
+  </div>
+
+  <div class="pregunta">
+    <p>3. ¿Qué planeta tiene mayor gravedad?</p>
+    <label><input type="radio" name="p3" value="a"> Marte</label>
+    <label><input type="radio" name="p3" value="b"> Tierra</label>
+    <label><input type="radio" name="p3" value="c"> Júpiter</label>
+  </div>
+
+  <div class="pregunta">
+    <p>4. ¿Qué es la masa?</p>
+    <label><input type="radio" name="p4" value="a"> La cantidad de materia de un objeto</label>
+    <label><input type="radio" name="p4" value="b"> El peso de un objeto</label>
+    <label><input type="radio" name="p4" value="c"> La velocidad de un objeto</label>
+  </div>
+
+  <div class="pregunta">
+    <p>5. ¿Cuál de estas es una máquina simple?</p>
+    <label><input type="radio" name="p5" value="a"> Una bicicleta</label>
+    <label><input type="radio" name="p5" value="b"> Una palanca</label>
+    <label><input type="radio" name="p5" value="c"> Un tractor</label>
+  </div>
+
+  <div class="pregunta">
+    <p>6. ¿Qué instrumento se usa para medir la temperatura?</p>
+    <label><input type="radio" name="p6" value="a"> Termómetro</label>
+    <label><input type="radio" name="p6" value="b"> Barómetro</label>
+    <label><input type="radio" name="p6" value="c"> Regla</label>
+  </div>
+
+  <div class="pregunta">
+    <p>7. ¿Qué tipo de energía produce una pila?</p>
+    <label><input type="radio" name="p7" value="a"> Energía térmica</label>
+    <label><input type="radio" name="p7" value="b"> Energía solar</label>
+    <label><input type="radio" name="p7" value="c"> Energía eléctrica</label>
+  </div>
+
+  <div class="pregunta">
+    <p>8. ¿Qué es la velocidad?</p>
+    <label><input type="radio" name="p8" value="a"> El peso de un objeto</label>
+    <label><input type="radio" name="p8" value="b"> La distancia recorrida en cierto tiempo</label>
+    <label><input type="radio" name="p8" value="c"> La cantidad de materia</label>
+  </div>
+
+  <div class="pregunta">
+    <p>9. ¿Qué ocurre con la sombra cuando el Sol está justo arriba?</p>
+    <label><input type="radio" name="p9" value="a"> La sombra es muy larga</label>
+    <label><input type="radio" name="p9" value="b"> La sombra desaparece</label>
+    <label><input type="radio" name="p9" value="c"> La sombra es corta</label>
+  </div>
+
+  <div class="pregunta">
+    <p>10. ¿Qué forma tiene la trayectoria de un objeto lanzado hacia arriba?</p>
+    <label><input type="radio" name="p10" value="a"> Línea recta</label>
+    <label><input type="radio" name="p10" value="b"> Parabólica</label>
+    <label><input type="radio" name="p10" value="c"> Circular</label>
+  </div>
+
+  <button onclick="finalizarExamen()">Finalizar Examen</button>
+  <div id="resultado"></div>
+  <button id="volverInicio" onclick="location.href='index.html'">Volver a la página principal</button>
+</div>
+
+<!-- Audio -->
+<audio id="audioFinal" src="audio/headshot.mp3" preload="auto"></audio>
+
+<script>
+  let nombreDelNino = "";
+
+  function iniciarExamen() {
+    const nombreInput = document.getElementById("nombre-nino").value.trim();
+    if (nombreInput === "") {
+      alert("Por favor, ingresa tu nombre antes de comenzar el examen.");
+      return;
+    }
+    nombreDelNino = nombreInput;
+    document.getElementById("formulario-nombre").style.display = "none";
+    document.getElementById("examen-completo").style.display = "block";
+  }
+
+  function finalizarExamen() {
+    const respuestas = {
+      p1: "b", p2: "b", p3: "c", p4: "a", p5: "b",
+      p6: "a", p7: "c", p8: "b", p9: "c", p10: "b"
+    };
+
+    let correctas = 0;
+    for (let i = 1; i <= 10; i++) {
+      const seleccionada = document.querySelector(`input[name="p${i}"]:checked`);
+      if (seleccionada && seleccionada.value === respuestas[`p${i}`]) {
+        correctas++;
+      }
+    }
+
+    const calificacion = (correctas / 10) * 100;
+    let nivel = "";
+    if (calificacion === 100) nivel = "Avanzado";
+    else if (calificacion >= 70) nivel = "Intermedio";
+    else nivel = "Básico";
+
+    document.getElementById("resultado").innerHTML =
+      `<strong>¡Muy bien ${nombreDelNino}!</strong><br>Tu calificación es: <strong>${calificacion.toFixed(2)}%</strong><br>Nivel: <strong>${nivel}</strong>`;
+
+    document.getElementById('audioFinal').play();
+    document.getElementById('volverInicio').style.display = 'block';
+    generarDiplomaPDF(calificacion, nivel);
+  }
+
+  async function generarDiplomaPDF(calificacion, nivel) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFillColor(255, 243, 224);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    const imgEstrella = await cargarImagenBase64('iconos/estrella.png');
+    const imgSello = await cargarImagenBase64('iconos/sello.png');
+
+    if (imgEstrella) doc.addImage(imgEstrella, 'PNG', 85, 10, 40, 40);
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(28);
+    doc.setTextColor(255, 152, 0);
+    doc.text("🏅 DIPLOMA DE FÍSICA 🏅", 105, 60, null, null, "center");
+
+    doc.setFontSize(16);
+    doc.setTextColor(0);
+    doc.text("Se otorga el presente reconocimiento a:", 105, 80, null, null, "center");
+
+    doc.setFontSize(22);
+    doc.setTextColor(76, 175, 80);
+    doc.text(nombreDelNino.toUpperCase(), 105, 100, null, null, "center");
+
+    doc.setFontSize(16);
+    doc.setTextColor(33, 33, 33);
+    doc.text(`Por haber completado el examen con una calificación de ${calificacion.toFixed(2)}%`, 105, 120, null, null, "center");
+    doc.text(`Nivel de Conocimiento: ${nivel}`, 105, 130, null, null, "center");
+
+    const fechaHoy = new Date().toLocaleDateString("es-MX", {
+      year: "numeric", month: "long", day: "numeric"
+    });
+
+    doc.setFontSize(12);
+    doc.text(`Fecha: ${fechaHoy}`, 105, 150, null, null, "center");
+
+    doc.setFontSize(10);
+    doc.text("¡Sigue aprendiendo y explorando el mundo de la física!", 105, 170, null, null, "center");
+
+    if (imgSello) doc.addImage(imgSello, 'PNG', 155, 230, 40, 40);
+
+    doc.save(`Diploma_${nombreDelNino.replace(/\s+/g, '_')}.pdf`);
+  }
+
+  function cargarImagenBase64(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/png"));
+      };
+      img.onerror = () => resolve(null);
+      img.src = url;
+    });
+  }
+</script>
+
+</body>
+</html>

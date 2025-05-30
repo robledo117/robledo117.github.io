@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encarta Física</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #ffebcd;
+            padding: 20px;
+        }
+        #menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff4500;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #cc3700;
+        }
+        #contenido {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+        img {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #d2691e;">Bienvenido a Encarta Física</h1>
+    <div id="menu">
+        <button onclick="mostrarContenido('mecanica')">Mecánica</button>
+        <button onclick="mostrarContenido('termodinamica')">Termodinámica</button>
+        <button onclick="mostrarContenido('electromagnetismo')">Electromagnetismo</button>
+        <button onclick="mostrarContenido('padres_fisica')">Padres de la Física</button>
+        <button onclick="mostrarContenido('mecanica_fluidos')">Mecánica de Fluidos</button>
+        <button onclick="mostrarContenido('mecanica_computacional')">Mecánica Computacional</button>
+    </div>
+    <div id="contenido">
+        <h2>Selecciona un tema para aprender</h2>
+        <p>Haz clic en los botones de arriba para ver información sobre distintos temas de física.</p>
+        
+        <img src="https://cdn-icons-png.flaticon.com/512/3793/3793069.png" alt="Termodinámica"/>
+        
+
+    </div>
+    <script>
+        function mostrarContenido(tema) {
+            let contenido = {
+                'mecanica': `<h2>Mecánica</h2>
+                            <p>La mecánica estudia el movimiento de los cuerpos y las fuerzas que lo producen.</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910797.png" alt="Mecánica"/>`,
+                'termodinamica': `<h2>Termodinámica</h2>
+                                 <p>La termodinámica estudia la energía y sus transformaciones, en especial el calor.</p>
+                                 <img src="https://cdn-icons-png.flaticon.com/512/3793/3793069.png" alt="Termodinámica"/>`,
+                'electromagnetismo': `<h2>Electromagnetismo</h2>
+                                     <p>El electromagnetismo estudia las interacciones entre cargas eléctricas y campos magnéticos.</p>
+                                     <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Física" />`,
+                'padres_fisica': `<h2>Padres de la Física</h2>
+                                 <p>Los grandes científicos que sentaron las bases de la física incluyen:</p>
+                                 <ul>
+                                     <li><strong>Isaac Newton:</strong> Desarrolló las leyes del movimiento y la gravitación universal.</li>
+                                     <li><strong>Albert Einstein:</strong> Creó la teoría de la relatividad.</li>
+                                     <li><strong>Galileo Galilei:</strong> Pionero en el método científico y la cinemática.</li>
+                                 </ul>
+                                 <img src="https://cdn-icons-png.flaticon.com/512/3050/3050431.png" alt="Científicos"/>`,
+                'mecanica_fluidos': `<h2>Mecánica de Fluidos</h2>
+                                     <p>Estudia el comportamiento de líquidos y gases en movimiento.</p>
+                                     <p>Principios clave:</p>
+                                     <ul>
+                                         <li><strong>Principio de Bernoulli:</strong> La energía en un fluido en movimiento se mantiene constante.</li>
+                                         <li><strong>Principio de Arquímedes:</strong> Un objeto sumergido experimenta un empuje hacia arriba igual al peso del líquido desplazado.</li>
+                                     </ul>
+                                     <img src="https://cdn-icons-png.flaticon.com/512/3024/3024354.png" alt="Mecánica de Fluidos"/>`,
+                'mecanica_computacional': `<h2>Mecánica Computacional</h2>
+                                          <p>Usa modelos matemáticos y computacionales para resolver problemas de mecánica.</p>
+                                          <p>Aplicaciones:</p>
+                                          <ul>
+                                              <li><strong>Simulación de estructuras:</strong> Ayuda a diseñar puentes y edificios resistentes.</li>
+                                              <li><strong>Dinámica de fluidos computacional:</strong> Se usa en la aerodinámica y la ingeniería automotriz.</li>
+                                          </ul>
+                                          <img src="https://cdn-icons-png.flaticon.com/512/2006/2006363.png" alt="Mecánica Computacional"/>`
+            };
+            document.getElementById('contenido').innerHTML = contenido[tema];
+        }
+    </script>
+        <br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brazo Robótico - Manual y Funcionamiento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 4px solid #38bdf8;
+    }
+
+    h1 {
+      color: #38bdf8;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #cbd5e1;
+    }
+
+    section {
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background-color: #1e293b;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: #60a5fa;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+      border: 3px solid #38bdf8;
+    }
+
+    .manual {
+      background-color: #0f172a;
+      border-left: 5px solid #38bdf8;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .manual h3 {
+      margin-top: 20px;
+      color: #94e2ff;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #00d4ff;
+      color: #0f172a;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+    }
+
+    .boton:hover {
+      background-color: #0077b6;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    #botones {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .menu-item {
+      padding: 15px 20px;
+      font-weight: bold;
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .mecanica { background-color: #ff4500; }
+    .termodinamica { background-color: #ff8c00; }
+    .electromagnetismo { background-color: #1e90ff; }
+    .optica { background-color: #ffd700; color: #000; }
+    .fisiCuantica { background-color: #9400d3; }
+    .padres_fisica { background-color: #8b4513; }
+    .mecanica_fluidos { background-color: #00ced1; }
+    .steam { background-color: #00fa9a; }
+
+    footer {
+      background-color: #1e293b;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .extra-info {
+      font-style: italic;
+      font-size: 1rem;
+      margin-top: 15px;
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Brazo Robótico</h1>
+    <p>Explorando su funcionamiento, especificaciones técnicas y manual de armado paso a paso</p>
+  </header>
+
+  <img src="imagenes/brazo0.png" alt="Brazo robótico armado" />
+
+  <section>
+    <h2>¿Qué es el brazo robótico?</h2>
+    <p>El brazo robótico de Steren es un kit educativo diseñado para enseñar principios básicos de robótica, mecánica y electrónica. Funciona con motores de corriente directa y permite controlar su movimiento con un control remoto de palancas.</p>
+  </section>
+
+  <section>
+    <h2>Movimientos en el Plano Cartesiano</h2>
+    <p>El brazo robótico opera en un espacio tridimensional (ejes X, Y, Z):</p>
+    <ul>
+      <li><strong>Movimiento en X:</strong> Giro de la base (izquierda/derecha).</li>
+      <li><strong>Movimiento en Y:</strong> Subida y bajada del brazo principal.</li>
+      <li><strong>Movimiento en Z:</strong> Extensión o retracción del brazo o pinza.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Grados de Libertad</h2>
+    <p>El brazo tiene <strong>5 grados de libertad</strong>:</p>
+    <ul>
+      <li>Rotación de la base</li>
+      <li>Movimiento del hombro</li>
+      <li>Movimiento del codo</li>
+      <li>Giro de la muñeca</li>
+      <li>Apertura/cierre de la pinza</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ángulos de Movimiento</h2>
+    <ul>
+      <li><strong>Base:</strong> 270°</li>
+      <li><strong>Hombro:</strong> 180°</li>
+      <li><strong>Codo:</strong> 180°</li>
+      <li><strong>Muñeca:</strong> 180°</li>
+      <li><strong>Pinza:</strong> Apertura de hasta 4.5 cm</li>
+    </ul>
+  </section>
+
+  <video controls>
+    <source src="imagenes/brazoV.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <section>
+    <h2>Peso Soportado</h2>
+    <p>Capacidad máxima de carga: <strong>100 gramos</strong>. Superar este límite puede dañar los motores.</p>
+  </section>
+
+  <section>
+    <h2>Alimentación</h2>
+    <ul>
+      <li>Usa <strong>4 pilas tipo D (1.5V)</strong></li>
+      <li>Compartimento de pilas ubicado en la base</li>
+      <li>Recomendación: usar pilas alcalinas</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tarjeta de direccionamiento</h2>
+    <p>Distribuye y controla la energía hacia los motores. Protege contra sobrecargas y regula dirección y encendido.</p>
+    <ul>
+      <li><strong>Funciones:</strong> Control y protección</li>
+      <li><strong>Interfaz:</strong> Recibe señales del control remoto</li>
+      <li><strong>Diseño:</strong> Didáctico y seguro</li>
+    </ul>
+  </section>
+
+  <img src="imagenes/brazo1.jpg" alt="Diagrama del brazo robótico Steren" />
+
+  <section>
+    <h2>¿Cómo se arma? - Manual</h2>
+    <div class="manual">
+      <h3>Paso 1:</h3> Clasifica piezas y herramientas<br>
+      <h3>Paso 2:</h3> Ensambla la base<br>
+      <h3>Paso 3:</h3> Arma las secciones del brazo<br>
+      <h3>Paso 4:</h3> Coloca los motores<br>
+      <h3>Paso 5:</h3> Conecta los cables<br>
+      <h3>Paso 6:</h3> Ensambla la pinza<br>
+      <h3>Paso 7:</h3> Realiza pruebas de funcionamiento
+    </div>
+  </section>
+
+  <video controls>
+    <source src="imagenes/brazoV1.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <section>
+    <h2>Aplicaciones del Brazo Robótico</h2>
+    <p>Este brazo no solo es una herramienta educativa, también ayuda a comprender:</p>
+    <ul>
+      <li>Fundamentos de la automatización</li>
+      <li>Sistemas mecatrónicos</li>
+      <li>La programación de movimientos en robótica</li>
+      <li>La relación entre teoría (física/mecánica) y práctica</li>
+    </ul>
+    <p class="extra-info">Ideal para estudiantes STEAM que quieren experimentar con robótica real a bajo costo.</p>
+  </section>
+
+  <div id="botones">
+    <a class="boton" href="https://cad.onshape.com/documents/598a2da56965623c18029561/w/438eb2503e64d85b5885a2d1/e/9c3cececf973e56e8f664f0a?renderMode=0&uiState=682e39a4c2d0694be3528156" target="_blank">Ver modelo 3D</a>
+    <br><br>
+    <a class="boton" href="index.html">Volver al Inicio</a>
+
+    <div id="menu">
+      <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+      <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+      <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+      <a class="menu-item optica" href="optica.html">Óptica</a>
+      <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+      <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+      <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a>
+      <a class="menu-item steam" href="steam.html">STEAM</a>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+
+
+<img src="https://http2.mlstatic.com/D_NQ_NP_618778-MLM71961556691_092023-O-excavadora-hidraulica-brazo-jeringas-madera-educativo.webp alt="Brazo hidráulico de madera" />
+
+  <section>
+    <h2>¿Qué es el brazo hidráulico?</h2>
+    <p>Este brazo hidráulico está hecho de madera y utiliza jeringas con agua para simular los movimientos de un brazo robótico. Es un proyecto educativo que enseña principios de la hidráulica, la física y la mecánica.</p>
+  </section>
+
+  <section>
+    <h2>Principio de Funcionamiento</h2>
+    <p>Se basa en el principio de Pascal: cuando se aplica presión en un líquido confinado, esta se transmite por igual en todas las direcciones. Al accionar las jeringas, se genera movimiento en diferentes secciones del brazo.</p>
+  </section>
+
+  <section>
+    <h2>Movimientos y Grados de Libertad</h2>
+    <ul>
+      <li><strong>Base:</strong> Giro manual</li>
+      <li><strong>Hombro:</strong> Elevación por presión hidráulica</li>
+      <li><strong>Codo:</strong> Flexión por jeringa conectada</li>
+      <li><strong>Muñeca:</strong> Movimiento hacia adelante y atrás</li>
+      <li><strong>Pinza:</strong> Apertura y cierre mediante jeringas opuestas</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Materiales Requeridos</h2>
+    <ul>
+      <li>Madera cortada (o MDF)</li>
+      <li>6 jeringas de 10 ml o más</li>
+      <li>Mangueras plásticas delgadas</li>
+      <li>Agua con colorante (opcional)</li>
+      <li>Silicón o pegamento caliente</li>
+      <li>Palitos de madera y tornillos pequeños</li>
+    </ul>
+  </section>
+
+  <video controls>
+    <source src="imagenes/brazo_hidraulico_demo.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <section>
+    <h2>¿Cómo se arma? - Manual</h2>
+    <div class="manual">
+      <h3>Paso 1:</h3> Clasifica las piezas de madera y verifica las jeringas<br>
+      <h3>Paso 2:</h3> Ensambla la base y la estructura con tornillos<br>
+      <h3>Paso 3:</h3> Coloca las jeringas en las articulaciones<br>
+      <h3>Paso 4:</h3> Llena las jeringas con agua y elimina el aire<br>
+      <h3>Paso 5:</h3> Conecta las mangueras entre pares de jeringas<br>
+      <h3>Paso 6:</h3> Verifica el movimiento de cada sección<br>
+      <h3>Paso 7:</h3> Ajusta y realiza pruebas de control hidráulico
+    </div>
+  </section>
+
+  <section>
+    <h2>Aplicaciones Educativas</h2>
+    <p>Este brazo hidráulico es ideal para aprender:</p>
+    <ul>
+      <li>Principios de la hidráulica y presión</li>
+      <li>Diseño mecánico con materiales accesibles</li>
+      <li>Trabajo en equipo y prototipado</li>
+      <li>Aplicaciones reales en robótica e ingeniería</li>
+    </ul>
+    <p class="extra-info">Excelente proyecto STEAM para estudiantes de primaria y secundaria.</p>
+  </section>
+
+  <div id="botones" style="text-align: center; padding: 30px;">
+    <a class="boton" href="https://www.youtube.com/results?search_query=brazo+hidráulico+con+jeringas" target="_blank">Ver Tutoriales</a>
+    <br><br>
+    <a class="boton" href="https://www.tinkercad.com/" target="_blank">Diseñar en Tinkercad</a>
+  </div>
+
+   <br><br>
+    <a class="boton" href="index.html">Volver al Inicio</a>
+
+    <div id="menu">
+      <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+      <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+      <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+      <a class="menu-item optica" href="optica.html">Óptica</a>
+      <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+      <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+      <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a>
+      <a class="menu-item steam" href="steam.html">STEAM</a>
+    </div>
+  </div>
+<br>
+<br>
+  <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MECANICA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #064b02, #7e2020);
+            text-align: center;
+            
+            font-family: 'Arial', sans-serif;
+            color: #f5f5f5;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.8);
+        }
+        #info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        #info strong {
+            color: #ffcc00;
+        }
+        .imagen {
+            width: 400px;
+            margin-top: 10px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+            
+             display: block;
+             margin: 0 auto;
+
+
+        }
+        .boton {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #ffcc00;
+            color: #004d7a;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.6);
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 25px rgba(255, 204, 0, 0.9);
+        }
+        canvas {
+            border: 2px solid #ffcc00;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.6);
+        }
+        #angle-display {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 15px;
+        }
+        #extra-info {
+            margin: 40px auto;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            font-size: 18px;
+            text-align: justify;
+        }
+        #extra-info h2 {
+            color: #ffcc00;
+        }
+        #pendulum-base {
+            width: 150px; /* Ancho aumentado para que sea más realista */
+            height: 20px;
+            background-color: #b5651d; /* Color más cálido para el soporte */
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+        #pendulum-stand {
+            width: 10px;
+            height: 100px;
+            background-color: #b5651d;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+        .cuadro-narrativo {
+  background-color: #154b9d;
+  border: 2px solid #99c2ff;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  font-family: 'Segoe UI', sans-serif;
+  animation: slideIn 2s ease-out;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
+}
+
+.cuadro-narrativo h3 {
+  color: #660000;
+}
+
+.cuadro-narrativo button {
+  background-color: #4da6ff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cuadro-narrativo button:hover {
+  background-color: #0059b3;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+ .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+
+
+    </style>
+</head>
+<body>
+<br>
+<h1>MECANICA</h1>
+<br>
+    
+
+    <div id="info">
+        <p>
+            La <strong>mecánica</strong> es la rama de la física que estudia el <strong>movimiento</strong> de los objetos y las <strong>fuerzas</strong> que actúan sobre ellos.  
+            Se divide en tres áreas principales:
+        </p>
+        <ul>
+            <li><strong>Cinemática:</strong> Estudia el movimiento sin considerar sus causas.</li>
+            <li><strong>Dinámica:</strong> Analiza las fuerzas que causan el movimiento.</li>
+            <li><strong>Estática:</strong> Se centra en los cuerpos en equilibrio.</li>
+        </ul>
+        
+      <img src="imagenes/meca.webp" alt="Ilustración de mecánica" class="imagen" >
+    </div>
+
+    
+    <div id="extra-info">
+        <h2>¿Qué es la mecánica y por qué es importante?</h2>
+        <p>
+            La mecánica no solo se ocupa de las leyes que rigen el movimiento de los objetos, sino también de cómo se interrelacionan las fuerzas y los cuerpos. 
+            Gracias a la mecánica, podemos comprender y predecir el comportamiento de los objetos en nuestro entorno. Esta rama de la física se utiliza en muchas áreas de la ciencia y la ingeniería.
+        </p>
+        <h2>¿Quiénes descubrieron las leyes de la mecánica?</h2>
+        <p>
+            La mecánica clásica fue formulada principalmente por <strong>Isaac Newton</strong>, quien desarrolló las tres leyes fundamentales del movimiento y la ley de la gravitación universal en el siglo XVII. 
+            Sin embargo, antes de Newton, filósofos y científicos como <strong>Galileo Galilei</strong> y <strong>Johannes Kepler</strong> ya habían realizado importantes descubrimientos relacionados con el movimiento de los cuerpos.
+        </p>
+        <h2>Ámbitos de Aplicación de la Mecánica</h2>
+        <ul>
+            <li><strong>Ingeniería:</strong> Diseño de maquinaria, vehículos, puentes, etc.</li>
+            <li><strong>Aeronáutica:</strong> Estudio del vuelo y el diseño de aviones.</li>
+            <li><strong>Construcción:</strong> Cálculos estructurales y diseño de edificios.</li>
+            <li><strong>Medicina:</strong> Uso de mecánica para el análisis de fuerzas en el cuerpo humano.</li>
+            <li><strong>Deportes:</strong> Mejora del rendimiento físico y el análisis del movimiento.</li>
+        </ul>
+    </div>
+ <h2>Péndulo Estilizado</h2>
+    <div style="text-align: center;"></div>
+ <img src="imagenes/pendulo.png" alt="Ilustración de mecánica" class="imagen">
+</div>
+
+    
+    <p id="animacion-info">
+        ⚙️ La animación representa un **péndulo oscilante**, un ejemplo clásico de **movimiento armónico simple** en mecánica. ⚙️
+    </p>
+
+
+    <canvas id="pendulumCanvas"></canvas>
+
+ 
+
+
+      <!-- Instrucciones -->
+      <div id="instructions">
+        <h3>Instrucciones para mover el péndulo</h3>
+        <p>
+            1. Haz clic en el péndulo para empezar a moverlo. <br>
+            2. Puedes arrastrar el péndulo con el mouse para cambiar el ángulo inicial. <br>
+            3. Cuando el péndulo esté detenido, haz clic en él nuevamente para que empiece a oscilar de nuevo.
+        </p>
+    </div>
+
+    <div id="angle-display">Ángulo: 0°</div> <!-- Mostrar el ángulo aquí -->
+
+    <h2>--------------------------------------------------------------------------------------------------------------------------------------------</h2>
+    <br>
+
+    <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/RmytW2ikAcc" 
+      title="Movimiento mecánico física para niños de primaria"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <br><br>
+    
+    <h2>Engranes en Movimiento</h2>
+    <canvas id="engranes" width="300" height="200"></canvas>
+    <br>
+  <!-- Contenedor del texto de engranes con animación -->
+<div id="cuadroEngranes" class="cuadro-narrativo">
+    <h3>¿Cómo funcionan los engranes?</h3>
+    <p>
+      Los <strong>engranes</strong> son elementos fundamentales en el estudio de la mecánica, especialmente en el campo de la transmisión de movimiento. 
+      Se componen de ruedas dentadas que encajan entre sí, permitiendo transferir fuerza y movimiento rotacional de un eje a otro. 
+      Cuando un engrane gira, sus dientes empujan los del engrane contiguo, provocando que este también gire, pero en sentido contrario.
+    </p>
+    <p>
+      Este principio se utiliza para cambiar la dirección del movimiento, modificar la velocidad de rotación o aumentar/disminuir la fuerza aplicada. 
+      La relación entre el tamaño de los engranes se conoce como <strong>relación de transmisión</strong>.
+    </p>
+    <p>
+      Existen varios tipos: engranes cilíndricos, cónicos, helicoidales y planetarios, cada uno con aplicaciones específicas.
+      Gracias a ellos, podemos ver cómo la mecánica hace posible herramientas cotidianas, desde bicicletas hasta relojes.
+    </p>
+    <button onclick="narrarTextoEngranes()">🔊 Escuchar explicación</button>
+  </div>
+
+  <div id="conclusion" style="
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #00bfff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 3rem auto;
+  max-width: 900px;
+  color: #f5f5f5;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+  transition: transform 0.3s ease;
+  text-align: justify;">
+  
+  <h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+    🔧 Conclusión: ¿Qué es la mecánica pura?
+  </h2>
+  <p>
+    La <strong>mecánica pura</strong> es una rama fundamental de la física que estudia el movimiento de los cuerpos y las fuerzas que lo causan. A diferencia de otras disciplinas, la mecánica se enfoca en los principios y leyes universales que rigen el comportamiento de los objetos, sin considerar aspectos como la naturaleza del material o las condiciones ambientales.
+  </p>
+  <p>
+    Las leyes de la mecánica, como las <strong>leyes de Newton</strong> y el <strong>principio de conservación de la energía</strong>, son esenciales para entender cómo los objetos interactúan entre sí y cómo se puede predecir su comportamiento. Estas leyes no solo describen el movimiento de los cuerpos en situaciones cotidianas, sino que también permiten el desarrollo de tecnologías avanzadas en áreas como la ingeniería, la aeronáutica y la física teórica.
+  </p>
+  <p>
+    La mecánica pura se divide en varias subáreas, como la <strong>mecánica clásica</strong>, que trata sobre los objetos a escalas macroscópicas y a velocidades relativamente bajas, y la <strong>mecánica cuántica</strong>, que estudia el comportamiento de las partículas a escalas subatómicas. A través de estas áreas, se abordan fenómenos como la gravedad, la fricción, la dinámica de los cuerpos rígidos y el movimiento de fluidos.
+  </p>
+  <p>
+    En resumen, la mecánica pura es la base sobre la cual se construye nuestra comprensión del mundo físico. Sus principios no solo explican el movimiento de los objetos, sino que también fundamentan el diseño y funcionamiento de muchas de las tecnologías que usamos en nuestra vida diaria, desde vehículos hasta dispositivos electrónicos.
+  </p>
+</div>
+
+    <br>
+
+    <!-- 
+   <a href="3ManoeD.html" class="boton">Ver Modelo 3D</a>    
+    -->
+
+<a href="brazo.html" class="boton">Ver Modelo de Reprecentacion</a> 
+    <a href="index.html" class="boton">Volver al Inicio</a>
+
+    <!-- Agregar el archivo de audio -->
+    <audio id="pendulum-sound" src="tik.mp3" preload="auto"></audio>
+
+
+<br>
+    
+
+    <script>
+        const canvas = document.getElementById("pendulumCanvas");
+        const ctx = canvas.getContext("2d");
+        const pendulumSound = document.getElementById("pendulum-sound");
+        const angleDisplay = document.getElementById("angle-display");
+
+        canvas.width = 600;
+        canvas.height = 400;
+
+        let angle = Math.PI / 4;
+        let angleVelocity = 0;
+        let angleAcceleration = 0;
+        const gravity = 0.005;
+        const length = 150;
+        const pivotX = canvas.width / 2;
+        const pivotY = 100;
+        const ballRadius = 30;
+        let moving = false;
+        let isDragging = false;
+        let startAngle = angle;
+
+        function playSound() {
+            pendulumSound.play();
+        }
+
+        function drawPendulum() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dibujar el soporte superior (horizontal)
+            ctx.fillStyle = "#b5651d"; // Soporte marrón
+            ctx.fillRect(pivotX - 75, 0, 150, 20);  // Soporte del péndulo horizontal
+
+            // Dibujar la cuerda del péndulo
+            ctx.beginPath();
+            ctx.moveTo(pivotX, 0);
+            ctx.lineTo(pivotX + length * Math.sin(angle), pivotY + length * Math.cos(angle));
+            ctx.strokeStyle = "#5e5e5e";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Dibujar la bola del péndulo
+            const ballX = pivotX + length * Math.sin(angle);
+            const ballY = pivotY + length * Math.cos(angle);
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "#4b0082";  // Color morado oscuro para la bola
+            ctx.fill();
+            ctx.stroke();
+
+            
+            // Mostrar el ángulo en grados
+            angleDisplay.textContent = `Ángulo: ${(angle * 180 / Math.PI).toFixed(2)}°`;
+
+            // Actualización del ángulo
+            if (moving) {
+                angleAcceleration = (-1 * gravity * Math.sin(angle));
+                angleVelocity += angleAcceleration;
+                angleVelocity *= 0.99;  // Frotamiento
+                angle += angleVelocity;
+            }
+
+            // Reproducir sonido si el péndulo está oscilando
+            if (Math.abs(angleVelocity) > 0.01) {
+                playSound();
+            }
+
+            requestAnimationFrame(drawPendulum);
+        }
+
+        canvas.addEventListener("click", function() {
+            if (!moving) {
+                moving = true;
+            }
+        });
+
+        canvas.addEventListener("mousedown", function(e) {
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+            const distance = Math.sqrt(Math.pow(mouseX - pivotX - length * Math.sin(angle), 2) + Math.pow(mouseY - pivotY - length * Math.cos(angle), 2));
+
+            if (distance < ballRadius) {
+                isDragging = true;
+                moving = false;
+            }
+        });
+
+        canvas.addEventListener("mouseup", function() {
+            if (isDragging) {
+                isDragging = false;
+                moving = true;
+            }
+        });
+
+        canvas.addEventListener("mousemove", function(e) {
+            if (isDragging) {
+                const mouseX = e.offsetX;
+                const mouseY = e.offsetY;
+                angle = Math.atan2(mouseY - pivotY, mouseX - pivotX);
+            }
+        });
+
+        drawPendulum();
+    </script>
+
+
+    <!-- Botones de control de voz -->
+    <div>
+        <button class="boton" onclick="leerTexto()">🔊 Leer en voz alta</button>
+        <button class="boton" onclick="detenerLectura()">🛑 Detener lectura</button>
+    </div>
+<!-- Menú de navegación -->
+<div id="menu">
+    <!--<a class="menu-item mecanica" href="mecanica.html">Mecánica</a>-->
+    <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+     <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+    <a class="menu-item optica" href="optica.html">Óptica</a>
+    <a class="menu-item acustica" href="acustica.html">Acústica</a>
+    <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+    <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+    <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+     <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> 
+      <!--<a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>-->
+     <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+</div>
+<br>
+    <script>
+        const synth = window.speechSynthesis;
+
+        function leerTexto() {
+            detenerLectura(); // detener si ya hay algo hablando
+            const texto = document.getElementById("info").innerText + " " + document.getElementById("extra-info").innerText;
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = "es-ES";
+            synth.speak(utterance);
+        }
+
+        function detenerLectura() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+        }
+
+        // Detener la lectura si se abandona la página
+        window.addEventListener("beforeunload", detenerLectura);
+        window.addEventListener("pagehide", detenerLectura);
+    </script>
+
+
+
+<script>
+    const canvasEngranes = document.getElementById('engranes');
+    const ctxEngranes = canvasEngranes.getContext('2d');
+
+    let angle1 = 0;
+    let angle2 = 0;
+
+    function dibujarEngrane(cx, cy, radio, dientes, angulo, sentido) {
+        ctxEngranes.save();
+        ctxEngranes.translate(cx, cy);
+        ctxEngranes.rotate(angulo);
+
+        ctxEngranes.beginPath();
+        for (let i = 0; i < dientes; i++) {
+            let a = (i * 2 * Math.PI) / dientes;
+            let r = i % 2 === 0 ? radio : radio * 0.85;
+            ctxEngranes.lineTo(r * Math.cos(a), r * Math.sin(a));
+        }
+        ctxEngranes.closePath();
+        ctxEngranes.fillStyle = "#444";
+        ctxEngranes.fill();
+
+        ctxEngranes.beginPath();
+        ctxEngranes.arc(0, 0, radio * 0.3, 0, 2 * Math.PI);
+        ctxEngranes.fillStyle = "#999";
+        ctxEngranes.fill();
+
+        ctxEngranes.restore();
+    }
+
+    function animarEngranes() {
+        ctxEngranes.clearRect(0, 0, canvasEngranes.width, canvasEngranes.height);
+
+        let centro1 = { x: 100, y: 100 };
+        let centro2 = { x: 190, y: 100 };
+
+        dibujarEngrane(centro1.x, centro1.y, 40, 20, angle1, 1);
+        dibujarEngrane(centro2.x, centro2.y, 30, 15, angle2, -1);
+
+        angle1 += 0.02;
+        angle2 -= 0.027; // sentido opuesto
+
+        requestAnimationFrame(animarEngranes);
+    }
+
+    animarEngranes();
+</script>
+
+
+    <script>
+    function narrarTextoEngranes() {
+      const texto = `Los engranes son piezas fundamentales en la mecánica. Sirven para transmitir fuerza y movimiento entre ejes mediante dientes que se acoplan. 
+      Pueden aumentar la fuerza o la velocidad dependiendo de su tamaño. Existen muchos tipos: cilíndricos, cónicos, helicoidales y más. 
+      Son usados en relojes, bicicletas, motores, máquinas y herramientas. Su estudio es clave para entender cómo funciona gran parte de la tecnología mecánica actual.`;
+      
+      const utterance = new SpeechSynthesisUtterance(texto);
+      utterance.lang = 'es-MX';
+      utterance.rate = 1;
+      speechSynthesis.speak(utterance);
+    }
+    </script>
+    
+</body>
+</html>

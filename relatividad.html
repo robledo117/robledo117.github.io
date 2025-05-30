@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatividad</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #553fd3, #2a2910);
+            text-align: center;
+            background-color: #0b0c10;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        h1 {
+            color: #ff4500;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(255, 69, 0, 0.7);
+        }
+        #info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 69, 0, 0.5);
+            max-width: 800px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .imagen {
+            width: 400px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(255, 69, 0, 0.5);
+        }
+        .boton {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 8px rgba(255, 69, 0, 0.5);
+            text-align: center;
+            text-decoration: none;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #c23300;
+        }
+        canvas {
+            border: 2px solid white;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: black;
+        }
+        #animacion-info {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #dcdcdc;
+            font-style: italic;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+
+
+
+        .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+
+
+
+
+    
+     .imagen {
+    width: 700px;
+    height: auto;
+    border-radius: 10px; 
+    text-align: center;
+  }
+
+    </style>
+</head>
+<body>
+    
+    <br>
+
+    <h1>Teoría de la Relatividad</h1>
+<br>
+    <div id="info">
+        <p>
+            La <strong>Teoría de la Relatividad</strong> fue desarrollada por Albert Einstein y revolucionó nuestra comprensión del espacio, el tiempo y la gravedad.
+        </p>
+        <ul>
+            <li><strong>Relatividad Especial (1905):</strong> Describe cómo el tiempo y el espacio son relativos según la velocidad de un observador.</li>
+            <li><strong>Relatividad General (1915):</strong> Explica la gravedad como la curvatura del espacio-tiempo debido a la masa de los objetos.</li>
+        </ul>
+        <p>
+            Un ejemplo de la relatividad es la <strong>dilatación temporal</strong>: un reloj en un satélite en órbita avanza más rápido que uno en la Tierra debido a la menor gravedad.
+        </p>
+        <p>
+            <strong>Conceptos clave:</strong> espacio-tiempo, masa, velocidad, dilatación temporal, contracción espacial, inercia, gravedad.
+        </p>
+        <p>
+            <strong>¿Para qué sirve?</strong> Esta teoría es crucial para sistemas de GPS, exploración espacial, física de partículas, y cosmología moderna.
+        </p>
+        <p>
+            <strong>Fórmula famosa:</strong> E = mc², que indica que la energía es igual a la masa por la velocidad de la luz al cuadrado.
+        </p>
+       
+
+<img src="https://www.eurekando.org/wp-content/uploads/2024/07/que-es-la-teoria-de-la-relatividad-general-1.jpg" alt="Niños aprendiendo STEAM" class="imagen">
+        
+    </div>
+
+
+    <br>
+
+    <div class="video-container">
+    <iframe 
+      src="https://youtu.be/oFbgfkh4cj8" 
+      title="Movimiento mecánico física para niños de primaria"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <br><br>
+    <a class="boton" href="https://www.youtube.com/watch?v=uxvCKzpuP30&ab_channel=ElprofeBorraz">VISITAR SITIO</a> 
+    </div>
+    <br>
+    <br>
+ 
+<h2>Diferencias entre Relatividad Especial y Relatividad General</h2>
+<table style="width:100%; background-color: rgba(255,255,255,0.1); border-radius:10px; padding: 10px;">
+    <tr>
+        <th style="color:#ff8c00;">Relatividad Especial</th>
+        <th style="color:#00ced1;">Relatividad General</th>
+    </tr>
+    <tr>
+        <td>Publicada en 1905</td>
+        <td>Publicada en 1915</td>
+    </tr>
+    <tr>
+        <td>Se aplica a sistemas que se mueven a velocidades constantes</td>
+        <td>Describe la gravedad como curvatura del espacio-tiempo</td>
+    </tr>
+    <tr>
+        <td>No considera la gravedad</td>
+        <td>Incluye efectos gravitacionales</td>
+    </tr>
+</table>
+
+<h2>Ejemplos de Aplicación</h2>
+<p>
+    Gracias a la relatividad, hoy podemos usar sistemas como el GPS. Los satélites que giran alrededor de la Tierra deben corregir sus relojes debido a los efectos relativistas.
+</p>
+<img src="https://www.spottergps.com/es/wp-content/uploads/sites/7/2024/12/%C2%BFque-significa-gps-spotter.png" alt="Satélite GPS" class="imagen">
+
+<h2>Conceptos Visuales</h2>
+<p>
+    A continuación se muestra una representación visual de cómo la masa de un objeto deforma el espacio-tiempo.
+</p>
+<img src="https://i.pinimg.com/736x/86/63/b3/8663b38dd91c97e807b9a73484d46d98.jpg" alt="Curvatura del espacio-tiempo" class="imagen">
+
+<p>
+    También existe el fenómeno de la <strong>contracción espacial</strong>: a velocidades cercanas a la de la luz, un objeto parece más corto en la dirección del movimiento para un observador externo.
+</p>
+<img src="https://josevicentediaz.com/wp-content/uploads/2022/04/velocidad-de-la-luz.png" alt="Contracción espacial" class="imagen">
+
+<br>
+<br>
+    <!-- Animación: Curvatura del Espacio-Tiempo -->
+    <canvas id="relatividadCanvas"></canvas>
+    <p id="animacion-info">
+        🌌 La animación representa la <strong>curvatura del espacio-tiempo</strong> y la dilatación del tiempo en presencia de un objeto masivo. ⏳
+    </p>
+
+    <!-- Botón para escuchar la explicación -->
+    <button class="boton" onclick="leerExplicacion()">🔊 Escuchar explicación</button>
+
+    <!-- Botón para volver -->
+    <a href="index.html" class="boton">Volver al Inicio</a>
+
+    <script>
+        // Animación canvas
+        const canvas = document.getElementById("relatividadCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 600;
+        canvas.height = 400;
+
+        let gridSpacing = 30;
+        let gravityWell = { x: canvas.width / 2, y: canvas.height / 2, radius: 80 };
+
+        function drawGrid() {
+            ctx.strokeStyle = "rgba(255, 69, 0, 0.3)";
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x < canvas.width; x += gridSpacing) {
+                for (let y = 0; y < canvas.height; y += gridSpacing) {
+                    let dx = x - gravityWell.x;
+                    let dy = y - gravityWell.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    let warpFactor = Math.exp(-dist / 100) * 15;
+
+                    ctx.beginPath();
+                    ctx.arc(x + dx * warpFactor / 100, y + dy * warpFactor / 100, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = "white";
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+
+        function drawGravityWell() {
+            ctx.beginPath();
+            ctx.arc(gravityWell.x, gravityWell.y, gravityWell.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#ff4500";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawTimeDilation() {
+            let timeRadius = 40 + Math.sin(Date.now() / 500) * 10;
+            ctx.beginPath();
+            ctx.arc(gravityWell.x, gravityWell.y, timeRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(255, 255, 0, 0.8)";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGrid();
+            drawGravityWell();
+            drawTimeDilation();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Voz (SpeechSynthesis)
+        function leerExplicacion() {
+            const texto = `
+            Bienvenido a la Teoría de la Relatividad.
+            Esta teoría fue desarrollada por Albert Einstein y revolucionó la forma en la que entendemos el universo.
+            Se divide en dos partes. La Relatividad Especial explica cómo el espacio y el tiempo dependen del movimiento del observador.
+            La Relatividad General describe la gravedad como la curvatura del espacio-tiempo provocada por la masa.
+            Por ejemplo, el tiempo transcurre más lento cerca de objetos con gran masa, como los planetas.
+            Esta teoría es esencial para tecnologías modernas como el GPS, y para comprender los agujeros negros y la expansión del universo.
+            La famosa fórmula E igual a m c al cuadrado, nos dice que la masa y la energía son equivalentes.
+            Esperamos que disfrutes aprendiendo sobre esta increíble teoría.
+            `;
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.95;
+            utterance.pitch = 1;
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+    <button class="boton" onclick="toggleAudio()">⏸️ Parar audio</button>
+
+    <script>
+        let utterance;
+        let isSpeaking = false;
+    
+        function leerExplicacion() {
+            if (isSpeaking) return;
+            
+            const texto = `
+            Bienvenido a la Teoría de la Relatividad.
+            Esta teoría fue desarrollada por Albert Einstein y revolucionó la forma en la que entendemos el universo.
+            Se divide en dos partes. La Relatividad Especial explica cómo el espacio y el tiempo dependen del movimiento del observador.
+            La Relatividad General describe la gravedad como la curvatura del espacio-tiempo provocada por la masa.
+            Por ejemplo, el tiempo transcurre más lento cerca de objetos con gran masa, como los planetas.
+            Esta teoría es esencial para tecnologías modernas como el GPS, y para comprender los agujeros negros y la expansión del universo.
+            La famosa fórmula E igual a m c al cuadrado, nos dice que la masa y la energía son equivalentes.
+            Esperamos que disfrutes aprendiendo sobre esta increíble teoría.
+            `;
+    
+            utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.95;
+            utterance.pitch = 1;
+            utterance.onend = () => isSpeaking = false;
+            speechSynthesis.speak(utterance);
+            isSpeaking = true;
+        }
+    
+        function toggleAudio() {
+            if (isSpeaking) {
+                speechSynthesis.cancel();
+                isSpeaking = false;
+            } else {
+                leerExplicacion();
+            }
+        }
+    </script>
+
+<script>
+    // Detener el audio si el usuario sale de la página
+    window.addEventListener("beforeunload", () => {
+        speechSynthesis.cancel();
+    });
+
+    // También se detiene en navegadores que usan 'pagehide' (mejor compatibilidad)
+    window.addEventListener("pagehide", () => {
+        speechSynthesis.cancel();
+    });
+</script>
+
+  <!-- Menú de navegación -->
+      <div id="menu">
+        <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+        <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+        <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+        <a class="menu-item optica" href="optica.html">Óptica</a>
+        <a class="menu-item acustica" href="acustica.html">Acústica</a>
+        <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+       <!--  <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>-->
+        <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+         <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> 
+          <!--<a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>-->
+         <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+    </div>
+
+
+</body>
+</html>

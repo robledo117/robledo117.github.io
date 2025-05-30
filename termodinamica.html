@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termodinámica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #31309a, #b86b1f);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            color: #06a1d9;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        #info {
+            background-color: #ffffffb2;
+            padding: 30px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        #info strong {
+            color: #e66a00;
+        }
+        .imagen {
+          width: 750px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+             display: block;
+             margin: 0 auto;
+        }
+
+         .imagen2 {
+          width:450px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+             display: block;
+             margin: 0 auto;
+        }
+        .boton {
+            display: inline-block;
+            margin: 25px 15px;
+            padding: 14px 28px;
+            font-size: 20px;
+            background-color: #d97706;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.4s;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #b86505;
+        }
+        canvas {
+            border: 2px solid #444;
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+        #animacion-info {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #444;
+            font-style: italic;
+        }
+        .highlight {
+            color: #e66a00;
+        }
+        .section-title {
+            font-size: 24px;
+            color: #d97706;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+        .glossary {
+            background-color: #ffcc99;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 900px;
+            text-align: left;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+
+        #tempCanvas {
+    border: 2px solid #006080;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 15px rgba(0, 96, 128, 0.4);
+}
+
+#tempSlider {
+    accent-color: #ff6600;
+}
+
+
+#info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+  .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+
+
+    </style>
+</head>
+<body>
+     
+    <h1>Termodinámica</h1>
+    <div id="info">
+        <p>
+            La <strong>termodinámica</strong> estudia la <strong>energía</strong> y sus <strong>transformaciones</strong>, especialmente el <strong>calor</strong> y su relación con el trabajo.
+        </p>
+        <p><strong>Principales leyes de la termodinámica:</strong></p>
+        <ul>
+            <li><strong>Ley Cero:</strong> Si dos sistemas están en equilibrio térmico con un tercero, están en equilibrio entre sí.</li>
+            <li><strong>Primera Ley:</strong> La energía no se crea ni se destruye, solo se transforma.</li>
+            <li><strong>Segunda Ley:</strong> La entropía de un sistema aislado siempre aumenta.</li>
+            <li><strong>Tercera Ley:</strong> Es imposible alcanzar el cero absoluto.</li>
+        </ul>
+        <p><strong>¿Quiénes contribuyeron a la creación de la termodinámica?</strong></p>
+        <p>
+            Las bases de la termodinámica fueron sentadas por científicos como <strong>Sadi Carnot</strong>, quien formuló los principios de la máquina térmica, y <strong>Rudolf Clausius</strong> y <strong>Lord Kelvin</strong>, quienes hicieron importantes avances en la formulación matemática de la teoría.
+        </p>
+        <p><strong>Aplicaciones de la termodinámica:</strong></p>
+        <ul>
+            <li><strong>Máquinas de vapor:</strong> Como las que impulsaron la Revolución Industrial.</li>
+            <li><strong>Motor de combustión interna:</strong> Utilizado en automóviles y aviones.</li>
+            <li><strong>Refrigeración:</strong> Desde los refrigeradores domésticos hasta los sistemas de refrigeración industrial.</li>
+            <li><strong>Generación de electricidad:</strong> En plantas de energía eléctrica.</li>
+        </ul>
+      
+        <img src="imagenes/vapor.jpg" alt="Máquina de vapor" class="imagen2">
+    </div>
+
+    <!-- Sección más profunda -->
+    <div id="info">
+        <p><span class="section-title">Definiciones Clave en Termodinámica:</span></p>
+        <div class="glossary">
+            <p><strong>Temperatura:</strong> Una medida de la energía cinética promedio de las partículas en una sustancia.</p>
+            <p><strong>Entalpía (H):</strong> La cantidad total de energía de un sistema, que incluye la energía interna y la energía asociada con el volumen y la presión del sistema.</p>
+            <p><strong>Entropía (S):</strong> Una medida del desorden o la aleatoriedad dentro de un sistema.</p>
+            <p><strong>Trabajo (W):</strong> La energía transferida cuando una fuerza mueve un objeto a lo largo de una distancia.</p>
+        </div>
+       
+        <img src="imagenes/termo.gif" alt="Máquina de vapor" class="imagen2">
+    </div>
+
+    
+<br>
+    <!-- Animación -->
+    <canvas id="heatCanvas"></canvas>
+    <p id="animacion-info">
+        🔥 La animación representa la excitación de partículas en el espacio. 🔥
+    </p>
+
+
+<br>
+<br>
+    <div style="margin-top: 20px;">
+        <button class="boton" onclick="iniciarLectura()">🔊 Escuchar contenido</button>
+        <button class="boton" onclick="detenerLectura()">⏹️ Detener</button>
+    </div>
+    
+    <!-- Más información interactiva -->
+    <div id="info">
+        <p><span class="section-title">Ejemplo práctico de la Segunda Ley de la Termodinámica:</span></p>
+        <p>
+            Cuando un gas se expande dentro de un recipiente cerrado, la entropía del sistema aumenta, lo que significa que el sistema se vuelve más desordenado. Este proceso ocurre en sistemas como los motores de los automóviles, donde el calor se transfiere de los gases de escape al ambiente, aumentando la entropía.
+        </p>
+    </div>
+
+    <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/ZLAoKBVglU8" 
+      title="Las Leyes de la Termodinámica: una explicación sencilla"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+    <script>
+        const canvas = document.getElementById("heatCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 600;
+        canvas.height = 400;
+
+        class Particle {
+            constructor(x, y, size, color, speedX, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.speedX = speedX;
+                this.speedY = speedY;
+            }
+            move() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x - this.size < 0 || this.x + this.size > canvas.width) this.speedX *= -1;
+                if (this.y - this.size < 0 || this.y + this.size > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        let particles = [];
+        function initParticles() {
+            for (let i = 0; i < 30; i++) {
+                let size = Math.random() * 10 + 5;
+                let x = Math.random() * (canvas.width - 2 * size) + size;
+                let y = Math.random() * (canvas.height - 2 * size) + size;
+                let speedX = (Math.random() - 0.5) * 3;
+                let speedY = (Math.random() - 0.5) * 3;
+                let color = `rgba(255, ${Math.random() * 100 + 100}, 0, 0.8)`;
+                particles.push(new Particle(x, y, size, color, speedX, speedY));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.move();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+
+    <!-- 🔽 AGREGA ESTO JUSTO ANTES DE </body> -->
+<div id="info">
+    <p><span class="section-title">Simulación: Efecto de la temperatura en la velocidad de las partículas</span></p>
+    <p>
+        Usa la barra para simular el aumento o disminución de la temperatura. A mayor temperatura, mayor velocidad de las partículas.
+    </p>
+    <input type="range" id="tempSlider" min="1" max="10" value="5" step="1" style="width: 60%; margin: 20px auto; display: block;">
+    <canvas id="tempCanvas"></canvas>
+</div>
+
+<script>
+    const tempCanvas = document.getElementById("tempCanvas");
+    const tempCtx = tempCanvas.getContext("2d");
+    const tempSlider = document.getElementById("tempSlider");
+    tempCanvas.width = 600;
+    tempCanvas.height = 400;
+
+    class TempParticle {
+        constructor(x, y, size, color, speedX, speedY) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.color = color;
+            this.baseSpeedX = speedX;
+            this.baseSpeedY = speedY;
+        }
+
+        move(multiplier) {
+            this.x += this.baseSpeedX * multiplier;
+            this.y += this.baseSpeedY * multiplier;
+
+            if (this.x - this.size < 0 || this.x + this.size > tempCanvas.width) this.baseSpeedX *= -1;
+            if (this.y - this.size < 0 || this.y + this.size > tempCanvas.height) this.baseSpeedY *= -1;
+        }
+
+        draw() {
+            tempCtx.beginPath();
+            tempCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            tempCtx.fillStyle = this.color;
+            tempCtx.fill();
+            tempCtx.closePath();
+        }
+    }
+
+    let tempParticles = [];
+    function initTempParticles() {
+        for (let i = 0; i < 25; i++) {
+            let size = Math.random() * 8 + 5;
+            let x = Math.random() * (tempCanvas.width - 2 * size) + size;
+            let y = Math.random() * (tempCanvas.height - 2 * size) + size;
+            let speedX = (Math.random() - 0.5) * 2;
+            let speedY = (Math.random() - 0.5) * 2;
+            let color = `rgba(0, ${Math.random() * 255}, 255, 0.8)`;
+            tempParticles.push(new TempParticle(x, y, size, color, speedX, speedY));
+        }
+    }
+
+    function animateTempParticles() {
+        const multiplier = parseFloat(tempSlider.value);
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempParticles.forEach(p => {
+            p.move(multiplier);
+            p.draw();
+        });
+        requestAnimationFrame(animateTempParticles);
+    }
+
+    initTempParticles();
+    animateTempParticles();
+</script>
+
+
+
+<img src="imagenes/temperatura.jpg" alt="Máquina de vapor" class="imagen">
+<br>
+
+<div id="info">
+<h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+  🔥 Conclusión: ¿Qué es la termodinámica?
+</h2>
+<p>
+  La <strong>termodinámica</strong> es una rama esencial de la física que estudia las relaciones entre el calor, la energía y el trabajo. Se enfoca en comprender cómo la energía se transforma dentro de un sistema y cómo estas transformaciones afectan sus propiedades físicas, como la temperatura, el volumen y la presión.
+</p>
+<p>
+  A través de sus <strong>cuatro leyes fundamentales</strong>, la termodinámica proporciona el marco teórico para analizar procesos como la expansión de los gases, el funcionamiento de los motores térmicos y la transferencia de calor en distintos materiales. Estas leyes son aplicables tanto a sistemas macroscópicos como a nivel molecular.
+</p>
+<p>
+  La termodinámica tiene aplicaciones cruciales en campos como la ingeniería, la climatología, la química, la biología y la tecnología energética. Desde la eficiencia de los refrigeradores hasta el comportamiento de las estrellas, sus principios permiten explicar y predecir el comportamiento de la materia en función de la energía.
+</p>
+<p>
+  En resumen, la termodinámica nos ofrece una comprensión profunda del intercambio de energía en el universo. Sus leyes no solo explican fenómenos naturales cotidianos, sino que también son la base de tecnologías fundamentales para el desarrollo y el bienestar de la humanidad.
+</p>
+</div>
+
+<br>
+<a href="index.html" class="boton">Volver al Inicio</a>
+
+
+
+
+<script>
+    let synth = window.speechSynthesis;
+    let utterance;
+
+    function iniciarLectura() {
+        if (synth.speaking) return;
+
+        const texto = `
+            La termodinámica estudia la energía y sus transformaciones, especialmente el calor y su relación con el trabajo.
+            Ley Cero: Si dos sistemas están en equilibrio térmico con un tercero, están en equilibrio entre sí.
+            Primera Ley: La energía no se crea ni se destruye, solo se transforma.
+            Segunda Ley: La entropía de un sistema aislado siempre aumenta.
+            Tercera Ley: Es imposible alcanzar el cero absoluto.
+            Las bases de la termodinámica fueron sentadas por científicos como Sadi Carnot, Rudolf Clausius y Lord Kelvin.
+            Aplicaciones: máquinas de vapor, motores de combustión, refrigeración y generación de electricidad.
+            Definiciones clave: temperatura, entalpía, entropía y trabajo.
+            Ejemplo práctico: Cuando un gas se expande, la entropía aumenta. Esto sucede en motores de automóviles.
+        `;
+
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = "es-ES";
+        synth.speak(utterance);
+    }
+
+    function detenerLectura() {
+        if (synth.speaking) {
+            synth.cancel();
+        }
+    }
+
+    // Detener lectura si el usuario abandona la página
+    window.addEventListener("beforeunload", detenerLectura);
+</script>
+<!-- Menú de navegación -->
+<div id="menu">
+    <!--<a class="menu-item mecanica" href="mecanica.html">Mecánica</a>-->
+    <!-- <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>-->
+    <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+    <a class="menu-item optica" href="optica.html">Óptica</a>
+    <a class="menu-item acustica" href="acustica.html">Acústica</a>
+    <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+    <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+    <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+     <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> 
+      <a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>
+     <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+</div>
+<br>
+<br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

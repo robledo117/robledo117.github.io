@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecánica de Fluidos - Jeringas Hidráulicas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #3bbbd4, #1c1e7a);
+            background-color: #001f3f;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #00d4ff;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+        .section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-left: 5px solid #00d4ff;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .section h2 {
+            color: #00d4ff;
+        }
+        .btn {
+            background: linear-gradient(45deg, #00d4ff, #0077b6);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px 10px;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #0077b6, #00d4ff);
+        }
+        canvas {
+            background-color: #003366;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+    </style>
+</head>
+<body>
+
+<br>
+<br>
+<h1>Mecánica de Fluidos </h1>
+
+<div class="container">
+    <div class="section">
+        <h2>🔬 ¿Qué es la Mecánica de Fluidos?</h2>
+        <p>La mecánica de fluidos es una rama de la física que estudia el comportamiento de los líquidos y gases en movimiento y en reposo. Se divide en dos grandes áreas:</p>
+        <ul>
+            <li>La <strong>hidrostática</strong>, que estudia los fluidos en equilibrio.</li>
+            <li>La <strong>hidrodinámica</strong>, que analiza los fluidos en movimiento.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📜 Historia de la Mecánica de Fluidos</h2>
+        <p>Los primeros estudios de la mecánica de fluidos se remontan a <strong>Arquímedes</strong>, quien formuló el principio de flotabilidad en el siglo III a.C. Sin embargo, fue el físico <strong>Blaise Pascal</strong> quien, en el siglo XVII, estableció el principio de la presión en los fluidos. Posteriormente, <strong>Daniel Bernoulli</strong> desarrolló la ecuación que lleva su nombre y que describe la conservación de la energía en un fluido.</p>
+    </div>
+
+    <div class="section">
+        <h2>⚙️ Aplicaciones de la Mecánica de Fluidos</h2>
+        <p>Esta disciplina es fundamental en diversas áreas, como:</p>
+        <ul>
+            <li>Aerodinámica (diseño de aviones y autos).</li>
+            <li>Ingeniería hidráulica (presas, tuberías, turbinas).</li>
+            <li>Medicina (flujo sanguíneo y jeringas hidráulicas).</li>
+            <li>Automóviles (frenos y dirección asistida).</li>
+        </ul>
+        <img src="imagenes/fluidos.png"  >
+    <br>
+    </div>
+    
+    <div class="section">
+        <h2>🛠️ ¿Cómo funciona un Actuador Hidráulico?</h2>
+        <p>Un actuador hidráulico es un dispositivo que convierte la presión de un fluido en <strong>movimiento mecánico</strong>. Está compuesto por:</p>
+        <ul>
+            <li>Un <strong>cilindro</strong> que contiene el fluido.</li>
+            <li>Un <strong>pistón o émbolo</strong>, que se desplaza dentro del cilindro.</li>
+            <li>Una <strong>válvula</strong> que controla el flujo del fluido.</li>
+        </ul>
+        <p>Al aplicar presión sobre el fluido en un extremo del cilindro, el émbolo se mueve, generando una fuerza capaz de levantar objetos pesados.</p>
+    </div>
+
+    <div class="section">
+        <h2>📏 ¿Qué es la Presión?</h2>
+        <p>La presión se define como la <strong>fuerza ejercida sobre una superficie</strong>. Su fórmula es:</p>
+        <p style="text-align: center; font-size: 18px;"><strong>P = F / A</strong></p>
+        <p>donde <strong>P</strong> es la presión, <strong>F</strong> la fuerza aplicada y <strong>A</strong> el área sobre la que actúa.</p>
+    
+    <br>
+    <img src="imagenes/presion.jpg"  >
+</div>
+
+    <div class="section">
+        <h2>🔄 Transmisión de Presión en un Sistema Hidráulico</h2>
+        <p>Según el <strong>principio de Pascal</strong>, la presión aplicada en un punto de un fluido se transmite <strong>uniformemente</strong> en todas direcciones.</p>
+        <p>En el caso de una jeringa hidráulica, cuando presionamos el émbolo de una jeringa, el líquido dentro de la manguera transmite la fuerza a la segunda jeringa, moviendo su émbolo sin pérdida de energía.</p>
+    </div>
+
+    <h2>💡 Simulación Interactiva</h2>
+    <p>Puedes arrastrar el émbolo de la jeringa izquierda para ver cómo se transmite la presión al otro émbolo.</p>
+
+    <canvas id="syringeCanvas" width="700" height="300"></canvas>
+    <audio id="pressureSound" src="presion.wav" preload="auto"></audio>
+
+
+    <div id="conclusion" style="
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #00bfff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 3rem auto;
+  max-width: 900px;
+  color: #f5f5f5;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+  transition: transform 0.3s ease;
+  text-align: justify;
+">
+  <h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+    🔧 Conclusión: ¿Qué es la mecánica de fluidos?
+  </h2>
+  <p>
+    La <strong>mecánica de fluidos</strong> es una rama de la física que estudia el comportamiento de los <strong>fluidos</strong> (líquidos y gases) en reposo o en movimiento. Esta disciplina es fundamental para entender cómo funcionan fenómenos naturales y artificiales, como el flujo del agua en ríos, la circulación sanguínea en el cuerpo humano o el funcionamiento de las máquinas hidráulicas.
+  </p>
+  <p>
+    Los principios de la mecánica de fluidos, como el <strong>principio de Pascal</strong>, la <strong>ecuación de Bernoulli</strong> y la <strong>ley de la viscosidad</strong>, explican cómo la presión, la velocidad y la viscosidad afectan el movimiento de los fluidos. Estas leyes no solo son cruciales para la ingeniería y la tecnología, sino también para la comprensión de fenómenos naturales.
+  </p>
+  <p>
+    En aplicaciones prácticas, la mecánica de fluidos juega un papel esencial en el diseño de sistemas hidráulicos, como el que estamos desarrollando en este proyecto. Este conocimiento permite construir dispositivos que aprovechan la fuerza de los fluidos para generar movimiento, como las <strong>manos hidráulicas</strong>, que simulan el funcionamiento de una máquina controlada por presión.
+  </p>
+  <p>
+    En resumen, la mecánica de fluidos es una disciplina que tiene un impacto significativo tanto en la vida diaria como en el avance de la tecnología, y su estudio y comprensión son fundamentales para el desarrollo de soluciones innovadoras en diversas áreas, desde la ingeniería hasta la medicina.
+  </p>
+</div>
+
+    <br>
+    <a href="index.html" class="btn">Volver al Inicio</a>
+    <a href="brazo1.pdf" class="btn" download>📄 Descargar Manual de Ensamble</a>
+</div>
+
+
+ <!-- Menú de navegación -->
+ <div id="menu">
+    <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+    <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+    <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+    <a class="menu-item optica" href="optica.html">Óptica</a>
+    <a class="menu-item acustica" href="acustica.html">Acústica</a>
+    <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+    <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+    <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+    <!--  <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> -->
+      <!--<a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>-->
+     <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+</div>
+
+
+<script>
+    const canvas = document.getElementById("syringeCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let syringe1 = { x: 150, y: 100, width: 30, height: 100, plunger: 40 };
+    let syringe2 = { x: 500, y: 100, width: 30, height: 100, plunger: 60 };
+    let dragging = false;
+
+    const pressureSound = document.getElementById("pressureSound");
+
+    function drawSyringe(syringe) {
+        // Cilindro
+        ctx.fillStyle = "#dddddd";
+        ctx.strokeStyle = "#888";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(syringe.x, syringe.y, syringe.width, syringe.height, 10);
+        ctx.fill();
+        ctx.stroke();
+
+        // Émbolo
+        ctx.fillStyle = "#00d4ff";
+        ctx.beginPath();
+        ctx.roundRect(syringe.x, syringe.y + syringe.plunger, syringe.width, 20, 5);
+        ctx.fill();
+        ctx.stroke();
+
+        // Parte superior del émbolo (simula la tapa)
+        ctx.fillStyle = "#0077b6";
+        ctx.beginPath();
+        ctx.arc(syringe.x + syringe.width / 2, syringe.y + syringe.plunger + 10, 6, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawHose() {
+        // Manguera conectando ambas jeringas
+        ctx.strokeStyle = "#00ffcc";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(syringe1.x + syringe1.width, syringe1.y + syringe1.height / 2);
+        ctx.bezierCurveTo(
+            syringe1.x + 150, syringe1.y + 150,
+            syringe2.x - 150, syringe2.y + 150,
+            syringe2.x, syringe2.y + syringe2.height / 2
+        );
+        ctx.stroke();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawHose();
+        drawSyringe(syringe1);
+        drawSyringe(syringe2);
+    }
+
+    canvas.addEventListener("mousedown", function (e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseY = e.clientY - rect.top;
+        const plungerTop = syringe1.y + syringe1.plunger;
+        const plungerBottom = plungerTop + 20;
+        const mouseX = e.clientX - rect.left;
+
+        if (
+            mouseX >= syringe1.x &&
+            mouseX <= syringe1.x + syringe1.width &&
+            mouseY >= plungerTop &&
+            mouseY <= plungerBottom
+        ) {
+            dragging = true;
+        }
+    });
+
+    canvas.addEventListener("mousemove", function (e) {
+        if (dragging) {
+            const rect = canvas.getBoundingClientRect();
+            let mouseY = e.clientY - rect.top;
+            syringe1.plunger = Math.max(0, Math.min(mouseY - syringe1.y - 10, syringe1.height - 20));
+            syringe2.plunger = syringe1.height - syringe1.plunger;
+            pressureSound.currentTime = 0;
+            pressureSound.play();
+            draw();
+        }
+    });
+
+    canvas.addEventListener("mouseup", function () {
+        dragging = false;
+    });
+
+    canvas.addEventListener("mouseleave", function () {
+        dragging = false;
+    });
+
+    // Extensión de CanvasRenderingContext2D para hacer rectángulos redondeados
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        if (w < 2 * r) r = w / 2;
+        if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.arcTo(x + w, y, x + w, y + h, r);
+        this.arcTo(x + w, y + h, x, y + h, r);
+        this.arcTo(x, y + h, x, y, r);
+        this.arcTo(x, y, x + w, y, r);
+        this.closePath();
+        return this;
+    }
+
+    draw();
+
+
+
+
+</script>
+
+
+
+<script>
+/*  
+       // Animación de jeringas
+       const syringeCanvas = document.getElementById("syringeCanvas");
+        const syringeCtx = syringeCanvas.getContext("2d");
+
+        let pistonY1 = 120;
+        let pistonY2 = 120;
+        let direction = 1;
+
+        function drawSyringes() {
+            syringeCtx.clearRect(0, 0, syringeCanvas.width, syringeCanvas.height);
+
+            // Jeringa izquierda
+            syringeCtx.fillStyle = "#aaa";
+            syringeCtx.fillRect(100, 50, 40, 150);
+            syringeCtx.fillStyle = "#00bfff";
+            syringeCtx.fillRect(100, pistonY1, 40, 200 - pistonY1);
+            syringeCtx.fillStyle = "#fff";
+            syringeCtx.fillRect(90, pistonY1 - 10, 60, 10); // émbolo
+
+            // Jeringa derecha
+            syringeCtx.fillStyle = "#aaa";
+            syringeCtx.fillRect(460, 50, 40, 150);
+            syringeCtx.fillStyle = "#00bfff";
+            syringeCtx.fillRect(460, pistonY2, 40, 200 - pistonY2);
+            syringeCtx.fillStyle = "#fff";
+            syringeCtx.fillRect(450, pistonY2 - 10, 60, 10); // émbolo
+
+            // Tubo conectando
+            syringeCtx.fillStyle = "#00bfff";
+            syringeCtx.fillRect(140, 120, 320, 20);
+        }
+
+        function animateSyringes() {
+            drawSyringes();
+            pistonY1 += direction;
+            pistonY2 -= direction;
+            if (pistonY1 > 180 || pistonY1 < 100) direction *= -1;
+            requestAnimationFrame(animateSyringes);
+        }
+
+        animateSyringes();
+
+*/
+  
+</script>
+
+
+    <br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

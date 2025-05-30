@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+
+
+.video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+        body {
+            background: linear-gradient(to right, #669759, #9c3988);
+            text-align: center;
+            background-color: #f3e6ff;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        #info {
+            background-color: #66050538; 
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #fff8f8;
+        }
+        .imagen {
+            width: 800px;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+              
+             display: block;
+             margin: 0 auto;
+
+        }
+        .boton {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #6a1ebc;
+        }
+        canvas {
+            border: 2px solid black;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        #animacion-info {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #444;
+            font-style: italic;
+        }
+        #reflexionCanvas {
+            margin-top: 30px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.625);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+    </style>
+</head>
+<body>
+ 
+<br>
+
+    <h1>Óptica</h1>
+
+    <div id="info">
+        <p>
+            La <strong>óptica</strong> es la rama de la física que estudia la luz y su comportamiento cuando interactúa con diferentes medios. Este campo abarca desde la propagación de la luz, hasta su reflexión, refracción, difracción e interferencia. La óptica es fundamental para una amplia variedad de aplicaciones, como la astronomía, la fotografía, la medicina, las pantallas electrónicas y las comunicaciones ópticas.
+        </p>
+         <img src="imagenes/optica0.gif" alt="electro" class="imagen">
+        <h2>Conceptos Clave de Óptica</h2>
+        <ul>
+            <li><strong>Reflexión:</strong> Es el fenómeno que ocurre cuando un rayo de luz rebota en una superficie, como un espejo. La ley de reflexión establece que el ángulo de incidencia es igual al ángulo de reflexión.</li>
+            <li><strong>Refracción:</strong> Se refiere a la desviación de un rayo de luz al pasar de un medio a otro con diferente índice de refracción, como cuando la luz pasa del aire al agua.</li>
+            <li><strong>Difracción:</strong> Ocurre cuando una onda de luz pasa a través de una abertura o rodea un objeto y se dispersa.</li>
+            <li><strong>Interferencia:</strong> Es la interacción entre dos o más ondas de luz que pueden reforzarse (interferencia constructiva) o cancelarse (interferencia destructiva), dependiendo de la fase relativa de las ondas.</li>
+        </ul>
+
+        <h2>Historia y Descubrimientos Clave</h2>
+        <p>
+            Los primeros estudios sobre óptica se remontan a la antigua Grecia. El filósofo <strong>Euclides</strong> (aproximadamente 300 a.C.) es conocido por haber formulado la ley de reflexión. Sin embargo, el verdadero avance en la comprensión de la óptica se produjo en el siglo XVII con los trabajos de <strong>Isaac Newton</strong> y <strong>Christiaan Huygens</strong>. Newton fue quien propuso la teoría corpuscular de la luz, mientras que Huygens defendió la teoría ondulatoria. Ambos modelos coexistieron hasta que <strong>Albert Einstein</strong> en el siglo XX desarrolló la teoría cuántica de la luz, que combina aspectos tanto de partículas como de ondas.
+        </p>
+ <img src="imagenes/historiaOP.webp" alt="Ilustración de óptica" class="imagen">
+        <h2>Aplicaciones de la Óptica</h2>
+        <p>
+            La óptica tiene aplicaciones en muchas áreas de la ciencia y la tecnología. Algunas de las más importantes incluyen:
+        </p>
+        <ul>
+            <li><strong>Telescopios:</strong> Utilizan lentes o espejos para observar cuerpos celestes a distancias extremadamente grandes.</li>
+            <li><strong>Microscopios:</strong> Permiten observar objetos microscópicos mediante el uso de lentes convergentes.</li>
+            <li><strong>Óptica en la medicina:</strong> Instrumentos como endoscopios y láseres quirúrgicos se basan en principios ópticos para diagnósticos y tratamientos.</li>
+            <li><strong>Comunicaciones ópticas:</strong> La fibra óptica utiliza la reflexión y refracción de la luz para transmitir información a grandes distancias con alta velocidad y precisión.</li>
+        </ul>
+
+        <h2>Principales Leyes de la Óptica</h2>
+        <ul>
+            <li><strong>Ley de la reflexión:</strong> El ángulo de incidencia es igual al ángulo de reflexión, medidos desde la normal (línea perpendicular a la superficie).</li>
+            <li><strong>Ley de Snell:</strong> La ley de refracción describe cómo cambia la dirección de la luz cuando pasa de un medio a otro con diferente índice de refracción.</li>
+            <li><strong>Principio de Huygens:</strong> Toda parte de una onda actúa como una fuente secundaria de ondas que propagará en el futuro.</li>
+        </ul>
+
+        <h2>El Rayo de Luz y Su Comportamiento</h2>
+        <p>
+            Un rayo de luz es una línea que muestra la dirección de propagación de la luz. Aunque la luz viaja como una onda, se representa frecuentemente como un rayo para simplificar los cálculos en óptica geométrica. Los rayos de luz pueden ser reflejados, refractados o difractados dependiendo del medio con el que interactúan.
+        </p>
+        <img src="imagenes/optica.gif" alt="Ilustración de óptica" class="imagen">
+    </div>
+
+    <!-- Animación: Refracción de la luz en un prisma -->
+    <canvas id="prismaCanvas"></canvas>
+    <p id="animacion-info">
+        🌈 La animación muestra cómo un **prisma descompone la luz blanca en sus colores componentes** por refracción. 🌈
+    </p>
+
+<div class="video-container">
+    <iframe 
+     src="https://www.youtube.com/embed/6hhm552J_yI" 
+      title="La luz: REFLEXIÓN Y REFRACCIÓN Ciencias para niños Parte 2"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
+    <!-- Animación: Reflexión de la luz en un espejo -->
+    <canvas id="reflexionCanvas" width="600" height="300"></canvas>
+    <p id="animacion-info">
+        🔄 Esta animación muestra cómo un **rayo de luz se refleja en un espejo plano**. 🔄
+    </p>
+
+   
+    <script>
+        // Animación Prisma
+        const canvas = document.getElementById("prismaCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 600;
+        canvas.height = 400;
+
+        function drawPrism() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dibujar el prisma
+            ctx.beginPath();
+            ctx.moveTo(250, 100);
+            ctx.lineTo(150, 300);
+            ctx.lineTo(350, 300);
+            ctx.closePath();
+            ctx.fillStyle = "rgba(173, 216, 230, 0.5)"; // Azul claro translúcido
+            ctx.fill();
+            ctx.strokeStyle = "black";
+            ctx.stroke();
+
+            // Dibujar el rayo de luz blanca entrando
+            ctx.beginPath();
+            ctx.moveTo(50, 200);
+            ctx.lineTo(250, 200);
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 5;
+            ctx.stroke();
+
+            // Dibujar los rayos de luz descompuesta
+            const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+            let startX = 250;
+            let startY = 200;
+            let endX = 450;
+            let offsetY = -50;
+
+            colors.forEach((color, index) => {
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, startY + offsetY);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                offsetY += 15;
+            });
+
+            // Dibujar etiquetas
+            ctx.fillStyle = "black";
+            ctx.font = "16px Arial";
+            ctx.fillText("Luz Blanca", 20, 195);
+            ctx.fillText("Espectro de Colores", 460, 195);
+        }
+
+        function animatePrism() {
+            drawPrism();
+            requestAnimationFrame(animatePrism);
+        }
+
+        animatePrism();
+
+        // Animación Reflexión
+        const reflexionCanvas = document.getElementById("reflexionCanvas");
+        const reflexionCtx = reflexionCanvas.getContext("2d");
+        const lightRay = { x: 50, y: 150, angle: Math.PI / 4 };
+
+        function drawReflection() {
+            reflexionCtx.clearRect(0, 0, reflexionCanvas.width, reflexionCanvas.height);
+
+            // Dibujar espejo
+            reflexionCtx.beginPath();
+            reflexionCtx.moveTo(0, 150);
+            reflexionCtx.lineTo(600, 150);
+            reflexionCtx.strokeStyle = "black";
+            reflexionCtx.lineWidth = 3;
+            reflexionCtx.stroke();
+
+            // Dibujar rayo de luz
+            reflexionCtx.beginPath();
+            reflexionCtx.moveTo(lightRay.x, lightRay.y);
+            reflexionCtx.lineTo(lightRay.x + 200 * Math.cos(lightRay.angle), lightRay.y - 200 * Math.sin(lightRay.angle));
+            reflexionCtx.strokeStyle = "yellow";
+            reflexionCtx.lineWidth = 5;
+            reflexionCtx.stroke();
+
+            // Dibujar rayo reflejado
+            const reflectedAngle = Math.PI / 4;
+            reflexionCtx.beginPath();
+            reflexionCtx.moveTo(400, 150);
+            reflexionCtx.lineTo(400 + 200 * Math.cos(reflectedAngle), 150 - 200 * Math.sin(reflectedAngle));
+            reflexionCtx.strokeStyle = "lightblue";
+            reflexionCtx.lineWidth = 5;
+            reflexionCtx.stroke();
+        }
+
+        function animateReflection() {
+            lightRay.x += 2;
+            if (lightRay.x > reflexionCanvas.width) {
+                lightRay.x = 50; // Reiniciar el rayo
+            }
+            drawReflection();
+            requestAnimationFrame(animateReflection);
+        }
+
+        animateReflection();
+    </script>
+     
+
+
+<!-- Botones para lectura automática -->
+<div style="margin-top: 30px;">
+    <button class="boton" onclick="iniciarLectura()">Iniciar lectura</button>
+    <button class="boton" onclick="detenerLectura()">Detener lectura</button>
+</div>
+
+<script>
+    const textoLectura = document.getElementById("info").innerText;
+    let lector = null;
+
+    function iniciarLectura() {
+        detenerLectura(); // Reinicia si ya estaba leyendo
+        lector = new SpeechSynthesisUtterance(textoLectura);
+        lector.lang = "es-ES";
+        speechSynthesis.speak(lector);
+    }
+
+    function detenerLectura() {
+        if (speechSynthesis.speaking || speechSynthesis.paused) {
+            speechSynthesis.cancel();
+        }
+    }
+
+    // Detiene la lectura al salir de la página
+    window.addEventListener("beforeunload", detenerLectura);
+
+
+    
+</script>
+<!-- Animación: Lente convergente -->
+<canvas id="lenteCanvas" width="600" height="300"></canvas>
+<p id="animacion-info">
+    🔍 Esta animación muestra cómo una **lente convergente** enfoca los rayos de luz paralelos hacia un punto focal. 🔍
+</p>
+
+<script>
+    const lenteCanvas = document.getElementById("lenteCanvas");
+    const lenteCtx = lenteCanvas.getContext("2d");
+
+    function drawLente() {
+        lenteCtx.clearRect(0, 0, lenteCanvas.width, lenteCanvas.height);
+
+        // Dibujar lente convergente
+        lenteCtx.beginPath();
+        lenteCtx.moveTo(290, 50);
+        lenteCtx.quadraticCurveTo(320, 150, 290, 250);
+        lenteCtx.moveTo(310, 50);
+        lenteCtx.quadraticCurveTo(280, 150, 310, 250);
+        lenteCtx.strokeStyle = "blue";
+        lenteCtx.lineWidth = 2;
+        lenteCtx.stroke();
+        lenteCtx.fillStyle = "rgba(173, 216, 230, 0.3)";
+        lenteCtx.fill();
+
+        // Dibujar rayos paralelos antes de la lente
+        for (let y = 100; y <= 200; y += 30) {
+            lenteCtx.beginPath();
+            lenteCtx.moveTo(0, y);
+            lenteCtx.lineTo(290, y);
+            lenteCtx.strokeStyle = "orange";
+            lenteCtx.lineWidth = 2;
+            lenteCtx.stroke();
+
+            // Después de la lente, enfocados al punto focal
+            lenteCtx.beginPath();
+            lenteCtx.moveTo(310, y);
+            lenteCtx.lineTo(600, 150);
+            lenteCtx.strokeStyle = "red";
+            lenteCtx.stroke();
+        }
+
+        // Punto focal
+        lenteCtx.beginPath();
+        lenteCtx.arc(600, 150, 5, 0, 2 * Math.PI);
+        lenteCtx.fillStyle = "red";
+        lenteCtx.fill();
+    }
+
+    drawLente();
+</script>
+<div id="info" style="margin-top: 20px;">
+    <h2>Funcionamiento de una Lente Convergente</h2>
+    <p>
+        Las lentes convergentes, también conocidas como lentes convexas, son dispositivos ópticos capaces de enfocar los rayos de luz que inciden sobre ellas en un único punto, llamado punto focal. Estas lentes tienen una forma abombada hacia afuera y se utilizan comúnmente en instrumentos ópticos como lupas, microscopios y telescopios.
+    </p>
+    <img src="imagenes/optica2.jpg" alt="Ilustración de óptica" class="imagen">
+    <p>
+        En esta animación se observa cómo varios rayos de luz paralelos llegan desde la izquierda, atraviesan la lente y convergen en un punto específico a la derecha. Este fenómeno se produce gracias a la refracción: la luz cambia de dirección al pasar del aire al material de la lente (vidrio o plástico), y luego nuevamente al salir de ella. La curvatura de la lente está diseñada para que todos los rayos refractados coincidan en el foco.
+    </p>
+    <p>
+        Este principio tiene múltiples aplicaciones en óptica. Por ejemplo, en la corrección visual, se usan lentes convergentes en anteojos para personas con hipermetropía, ayudando a enfocar correctamente la imagen en la retina. Además, en las cámaras fotográficas modernas, se utilizan lentes convexas para concentrar la luz en el sensor de imagen y formar fotografías nítidas.
+    </p>
+    <p>
+        Comprender el comportamiento de las lentes permite desarrollar mejores tecnologías ópticas y aprovechar la luz de manera precisa para obtener imágenes, dirigir rayos láser, o incluso aumentar la eficiencia de dispositivos que dependen de la concentración de luz, como los paneles solares con lentes Fresnel.
+    </p>
+</div>
+<img src="imagenes/refrac.gif" alt="electro" class="imagen">
+
+<br>
+<a href="index.html" class="boton">Volver al Inicio</a>
+<br>
+    <!-- Menú de navegación -->
+    <div id="menu">
+        <!--<a class="menu-item mecanica" href="mecanica.html">Mecánica</a>-->
+        <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+        <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+        <!-- <a class="menu-item optica" href="optica.html">Óptica</a>-->
+        <a class="menu-item acustica" href="acustica.html">Acústica</a>
+        <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+        <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+        <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+         <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> 
+          <a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>
+         <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+    </div>
+    <br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

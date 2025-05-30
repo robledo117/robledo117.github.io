@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Electromagnetismo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #950707 0%, #200000 100%);
+      color: #f5f5f5;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 1rem;
+      color: #00bfff;
+      text-shadow: 2px 2px 10px rgba(0, 191, 255, 0.4);
+    }
+
+    #info {
+      background: rgba(255, 255, 255, 0.179);
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: 2rem auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      text-align: justify;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    #info strong {
+      color: #00bfff;
+    }
+
+    .imagen {
+      width: 90%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 15px rgba(0, 191, 255, 0.5);
+      margin-top: 1rem;
+        
+             display: block;
+             margin: 0 auto;
+
+    }
+
+    .boton {
+      display: inline-block;
+      margin: 15px 10px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0px 5px 20px rgba(0, 191, 255, 0.3);
+      text-decoration: none;
+    }
+
+    .boton:hover {
+      transform: scale(1.05);
+      background-color: #0080ff;
+    }
+
+    canvas {
+      border: 2px solid #00bfff;
+      margin-top: 30px;
+      border-radius: 12px;
+      background-color: #000;
+      box-shadow: 0px 0px 20px rgba(0, 191, 255, 0.3);
+    }
+
+    #animacion-info {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-style: italic;
+      color: #cccccc;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    /* Menú */
+    #menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 1rem;
+    }
+
+    .menu-item {
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      width: 125px;
+      height: 35px;
+      text-align: center;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+    }
+
+    .mecanica { background-color: #ff4500; }
+    .termodinamica { background-color: #ff8c00; }
+    .electromagnetismo { background-color: #1e90ff; }
+    .optica { background-color: #ffd700; color: #000; }
+    .acustica { background-color: #32cd32; }
+    .fisiCuantica { background-color: #9400d3; }
+    .relatividad { background-color: #8b0000; }
+    .padres_fisica { background-color: #8b4513; }
+    .mecanica_fluidos { background-color: #00ced1; }
+
+ .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <h1>Electromagnetismo</h1>
+
+  <div id="info">
+    <p>
+      El <strong>electromagnetismo</strong> es la rama de la física que estudia la relación entre los <strong>campos eléctricos y magnéticos</strong>.  
+      Estas fuerzas son fundamentales en la naturaleza y en la tecnología moderna, donde son responsables de fenómenos como la generación de luz, el funcionamiento de motores y generadores, y la transmisión de señales en dispositivos electrónicos.
+    </p>
+    <ul>
+      <li><strong>Campo Eléctrico:</strong> Se genera por cargas eléctricas y afecta a otras cargas en su entorno. La dirección y la magnitud de este campo dependen de la distribución de cargas.</li>
+      <li><strong>Campo Magnético:</strong> Aparece cuando las cargas eléctricas están en movimiento, como en una corriente eléctrica. Afecta a otras cargas en movimiento y tiene una dirección perpendicular al flujo de corriente.</li>
+      <li><strong>Ondas Electromagnéticas:</strong> Son el resultado de la oscilación de ambos campos (eléctrico y magnético) y se propagan a través del espacio sin necesidad de un medio material. Son la base de fenómenos como la luz visible, las ondas de radio, los rayos X y más.</li>
+      <li><strong>Inducción Electromagnética:</strong> Es el proceso mediante el cual un campo magnético variable induce una corriente eléctrica en un conductor.</li>
+      <li><strong>Ley de Ampère-Maxwell:</strong> Describe cómo un campo magnético puede ser creado por una corriente eléctrica y cómo cambia con el tiempo.</li>
+      <li><strong>Ley de Faraday:</strong> Relaciona la variación temporal de un campo magnético con la generación de una corriente eléctrica en un circuito cerrado.</li>
+    </ul>
+   
+    <img src="imagenes/electromag1.webp" alt="electro" class="imagen">
+<p>LA IMAGEN REPRESENTA COMO SE PROPAGAN LAS ONDAS (CEM) CON LIBERTAD DENTRO DEL PLANO CARTESIANO</p> </CENTER>
+    <div style="text-align:center; margin-top: 20px;">
+      <button onclick="leerTexto()" class="boton">🔊 Escuchar</button>
+      <button onclick="pausarLectura()" class="boton">⏸️ Pausar</button>
+      <button onclick="detenerLectura()" class="boton">⏹️ Detener</button>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <iframe 
+     src="https://www.youtube.com/embed/EUXgQI6j_-E" 
+      title="ELECTROMAGNETISMO para niños ⚡ ¿Qué es un electroimán?"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
+  <!-- Animaciones -->
+  <canvas id="waveCanvas" width="600" height="400"></canvas>
+  <p id="animacion-info">
+    ⚡ La animación muestra <strong>ondas electromagnéticas</strong> propagándose en el espacio, con la oscilación simultánea de los campos eléctrico (rojo) y magnético (azul). ⚡
+  </p>
+
+  <canvas id="electromagnetismCanvas" width="600" height="400"></canvas>
+  <p id="animacion-info">
+    🔄 La animación representa el <strong>campo magnético generado por un cable con corriente eléctrica</strong>. Las líneas de campo magnético circulan alrededor del conductor. 🔄
+  </p>
+
+
+  <canvas id="opticaCanvas" width="600" height="400"></canvas>
+  <p id="animacion-info">
+    🌈 Esta animación representa cómo una <strong>onda electromagnética (luz)</strong> cambia su dirección al pasar de un medio a otro, un fenómeno conocido como <strong>refracción</strong>. Esto conecta directamente el <strong>electromagnetismo con la óptica</strong>. 🌈
+  </p>
+  
+<img src="imagenes/electro.gif" alt="Máquina de vapor" class="imagen">
+
+
+  <!-- Scripts -->
+  <script>
+    // Onda Electromagnética
+    const waveCanvas = document.getElementById("waveCanvas");
+    const waveCtx = waveCanvas.getContext("2d");
+    let t = 0;
+
+    function drawWaves() {
+      waveCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+      const amplitude = 50;
+      const wavelength = 100;
+      const centerX = waveCanvas.width / 2;
+      const centerY = waveCanvas.height / 2;
+
+      waveCtx.beginPath();
+      for (let x = 0; x < waveCanvas.width; x++) {
+        let y = centerY + amplitude * Math.sin((x / wavelength) * Math.PI * 2 - t);
+        waveCtx.lineTo(x, y);
+      }
+      waveCtx.strokeStyle = "red";
+      waveCtx.lineWidth = 2;
+      waveCtx.stroke();
+
+      waveCtx.beginPath();
+      for (let x = 0; x < waveCanvas.width; x++) {
+        let y = centerY + amplitude * Math.cos((x / wavelength) * Math.PI * 2 - t);
+        waveCtx.lineTo(x, y);
+      }
+      waveCtx.strokeStyle = "blue";
+      waveCtx.lineWidth = 2;
+      waveCtx.stroke();
+
+      t += 0.05;
+      requestAnimationFrame(drawWaves);
+    }
+    drawWaves();
+
+    // Campo Magnético
+    const magCanvas = document.getElementById("electromagnetismCanvas");
+    const magCtx = magCanvas.getContext("2d");
+
+    const fieldLines = [];
+    const numLines = 12;
+    const radius = 100;
+    const centerX = magCanvas.width / 2;
+    const centerY = magCanvas.height / 2;
+
+    for (let i = 0; i < numLines; i++) {
+      let angle = (i / numLines) * Math.PI * 2;
+      fieldLines.push({
+        x: centerX + Math.cos(angle) * radius,
+        y: centerY + Math.sin(angle) * radius,
+        angle: angle,
+      });
+    }
+
+    function drawMagneticField() {
+      magCtx.clearRect(0, 0, magCanvas.width, magCanvas.height);
+      magCtx.fillStyle = "#000";
+      magCtx.fillRect(0, 0, magCanvas.width, magCanvas.height);
+
+      magCtx.beginPath();
+      magCtx.arc(centerX, centerY, 10, 0, Math.PI * 2);
+      magCtx.fillStyle = "#ff4500";
+      magCtx.fill();
+
+      fieldLines.forEach(line => {
+        magCtx.beginPath();
+        magCtx.moveTo(centerX, centerY);
+        magCtx.lineTo(line.x, line.y);
+        magCtx.strokeStyle = "#1e90ff";
+        magCtx.lineWidth = 2;
+        magCtx.stroke();
+
+        line.angle += 0.02;
+        line.x = centerX + Math.cos(line.angle) * radius;
+        line.y = centerY + Math.sin(line.angle) * radius;
+      });
+
+      requestAnimationFrame(drawMagneticField);
+    }
+    drawMagneticField();
+
+    // Lectura de texto
+    const texto = document.getElementById("info").innerText;
+    const utterance = new SpeechSynthesisUtterance(texto);
+    utterance.lang = 'es-ES';
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    function leerTexto() {
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function pausarLectura() {
+      if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+        window.speechSynthesis.pause();
+      } else if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+    }
+
+    function detenerLectura() {
+      window.speechSynthesis.cancel();
+    }
+
+    // Detener lectura al salir de la página
+    window.addEventListener("beforeunload", () => {
+      window.speechSynthesis.cancel();
+    });
+
+
+
+
+
+
+
+
+
+    // Onda de Luz Refractada (óptica y electromagnetismo)
+const opticaCanvas = document.getElementById("opticaCanvas");
+const opticaCtx = opticaCanvas.getContext("2d");
+let tiempo = 0;
+
+function drawOpticaWave() {
+  opticaCtx.clearRect(0, 0, opticaCanvas.width, opticaCanvas.height);
+
+  // Línea divisoria entre dos medios
+  opticaCtx.beginPath();
+  opticaCtx.moveTo(opticaCanvas.width / 2, 0);
+  opticaCtx.lineTo(opticaCanvas.width / 2, opticaCanvas.height);
+  opticaCtx.strokeStyle = "white";
+  opticaCtx.setLineDash([5, 5]);
+  opticaCtx.stroke();
+  opticaCtx.setLineDash([]);
+
+  const amplitude = 30;
+  const wavelength = 50;
+
+  // Onda en el primer medio (izquierda)
+  opticaCtx.beginPath();
+  for (let x = 0; x < opticaCanvas.width / 2; x++) {
+    const y = opticaCanvas.height / 2 + amplitude * Math.sin((x / wavelength) * 2 * Math.PI - tiempo);
+    opticaCtx.lineTo(x, y);
+  }
+  opticaCtx.strokeStyle = "cyan";
+  opticaCtx.lineWidth = 2;
+  opticaCtx.stroke();
+
+  // Onda en el segundo medio (derecha, refractada con diferente velocidad)
+  opticaCtx.beginPath();
+  for (let x = opticaCanvas.width / 2; x < opticaCanvas.width; x++) {
+    const y = opticaCanvas.height / 2 + amplitude * Math.sin((x / (wavelength * 1.5)) * 2 * Math.PI - tiempo);
+    opticaCtx.lineTo(x, y);
+  }
+  opticaCtx.strokeStyle = "magenta";
+  opticaCtx.lineWidth = 2;
+  opticaCtx.stroke();
+
+  tiempo += 0.05;
+  requestAnimationFrame(drawOpticaWave);
+}
+drawOpticaWave();
+
+
+
+
+
+
+
+  </script>
+
+
+<p id="animacion-info">
+  🌈 A su vez representa el fenómeno de la <strong>refracción</strong> de una <strong>onda electromagnética</strong>, como lo es la <strong>luz</strong>, al pasar de un medio a otro. 
+  <br><br>
+  En la mitad izquierda del lienzo se observa la onda propagándose en un medio con menor índice de refracción, donde la velocidad de la luz es mayor. En la mitad derecha, al atravesar la línea blanca (superficie de separación entre medios), la onda cambia su velocidad y dirección debido al nuevo medio, simulando un índice de refracción mayor.
+  <br><br>
+  La <strong>refracción</strong> es una propiedad óptica que ocurre como consecuencia directa del comportamiento de las <strong>ondas electromagnéticas</strong>, demostrando cómo la <strong>óptica</strong está basada en principios fundamentales del <strong>electromagnetismo</strong>. Esta interacción entre campos eléctricos y magnéticos oscilantes da lugar a la luz y su comportamiento al interactuar con la materia.
+</p>
+
+<br>
+<div id="conclusion" style="
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #00bfff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 3rem auto;
+  max-width: 900px;
+  color: #f5f5f5;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+  transition: transform 0.3s ease;
+  text-align: justify;
+">
+  <h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+    🧲 Conclusión: ¿Qué es el campo electromagnético?
+  </h2>
+  <p>
+    El <strong>campo electromagnético</strong> es una manifestación fundamental de la naturaleza que surge de la interacción entre los <strong>campos eléctricos</strong> y <strong>campos magnéticos</strong>. Estos campos no existen de forma aislada cuando hay cargas eléctricas en movimiento: una corriente eléctrica genera un campo magnético, y a su vez, un campo magnético variable puede inducir un campo eléctrico.
+  </p>
+  <p>
+    Esta relación dinámica da lugar a lo que conocemos como <strong>ondas electromagnéticas</strong>, como la luz, las microondas, los rayos X y muchas otras formas de radiación.
+  </p>
+  <p>
+    El campo electromagnético es responsable de una gran cantidad de fenómenos cotidianos y tecnológicos: desde cómo funcionan nuestros electrodomésticos, hasta la transmisión de señales de radio, internet, y la luz que nos permite ver.
+  </p>
+  <p>
+    Comprender el campo electromagnético no solo permite explicar el funcionamiento del universo a nivel físico, sino que también impulsa el desarrollo de tecnologías en áreas como la <strong>medicina</strong>, las <strong>comunicaciones</strong>, la <strong>energía</strong>, la <strong>óptica</strong> y más.
+  </p>
+   <img src="imagenes/electro3.gif" alt="electro" class="imagen">
+</div>
+
+<br>
+<a href="index.html" class="boton">Volver al Inicio</a>
+
+<br>
+  <!-- Menú de navegación -->
+  <div id="menu">
+    <a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>
+    <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+    <a class="menu-item optica" href="optica.html">Óptica</a>
+    <a class="menu-item acustica" href="acustica.html">Acústica</a>
+    <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+    <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+    <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+    <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a>
+  </div>
+<br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

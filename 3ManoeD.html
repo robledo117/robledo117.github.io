@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engrane 3D</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+
+<script>
+  let scene, camera, renderer, engrane;
+  let isDragging = false;
+  let previousMousePosition = { x: 0, y: 0 };
+
+  init();
+
+  function init() {
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf0f0f0);
+
+    camera = new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    camera.position.set(0, 0, 5);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Iluminación
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
+
+    // Cargar el modelo GLTF
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+     'imagenes/engrane.gltf',
+        
+
+      function (gltf) {
+        engrane = gltf.scene;
+        engrane.scale.set(0.06, 0.06, 0.06); // Tamaño ajustado a 0.1
+        engrane.position.set(0, 0, 0);
+
+        // Cambiar el color de todas las mallas dentro del modelo a gris
+        engrane.traverse(function (child) {
+          if (child.isMesh) {
+            child.material.color.set(0x808080);  // Gris
+          }
+        });
+
+        scene.add(engrane);
+      },
+      undefined,
+      function (error) {
+        console.error('Error cargando modelo:', error);
+      }
+    );
+
+    // Control de rotación con el mouse
+    renderer.domElement.addEventListener('mousedown', () => isDragging = true);
+    renderer.domElement.addEventListener('mouseup', () => isDragging = false);
+    renderer.domElement.addEventListener('mousemove', (event) => {
+      if (isDragging && engrane) {
+        const deltaMove = {
+          x: event.offsetX - previousMousePosition.x,
+          y: event.offsetY - previousMousePosition.y
+        };
+
+        const deltaRotationQuaternion = new THREE.Quaternion()
+          .setFromEuler(new THREE.Euler(
+            toRadians(deltaMove.y * 0.5),
+            toRadians(deltaMove.x * 0.5),
+            0,
+            'XYZ'
+          ));
+
+        engrane.quaternion.multiplyQuaternions(deltaRotationQuaternion, engrane.quaternion);
+      }
+
+      previousMousePosition = {
+        x: event.offsetX,
+        y: event.offsetY
+      };
+    });
+
+    window.addEventListener('resize', onWindowResize, false);
+
+    animate();
+  }
+
+  function toRadians(angle) {
+    return angle * (Math.PI / 180);
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  }
+</script>
+
+</body>
+</html>

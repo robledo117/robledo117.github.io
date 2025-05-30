@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padres de la Física</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #363636, #000000);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            color: #f4c542;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .cientifico {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+            max-width: 900px;
+            text-align: justify;
+        }
+        .cientifico h2 {
+            color: #9bd8ff;
+        }
+        .imagen {
+            width: 180px;
+            border-radius: 12px;
+            box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+            display: block;
+            margin: 20px auto;
+        }
+        .boton {
+            margin-top: 30px;
+            padding: 14px 30px;
+            font-size: 18px;
+            background-color: #f4c542;
+            color: black;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #d4a02c;
+        }
+        canvas {
+            border: 2px solid white;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: black;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+    </style>
+</head>
+<body>
+     
+    <br>
+
+    <h1>Padres de la Física</h1>
+
+    <!-- Isaac Newton -->
+    <div class="cientifico">
+        <h2>Isaac Newton (1643-1727)</h2>
+        <img src="imagenes/newton.png" alt="Isaac Newton" class="imagen">
+        <p><strong>Logros:</strong> Leyes del movimiento, gravedad, óptica y cálculo.</p>
+        <p>Newton formuló las <strong>tres leyes del movimiento</strong> y la <strong>ley de la gravitación universal</strong>, que describen el comportamiento de los cuerpos y su interacción. También realizó experimentos fundamentales con prismas, descomponiendo la luz en sus colores componentes.</p>
+        <canvas id="newtonCanvas"></canvas>
+    </div>
+
+    <!-- Nikola Tesla -->
+    <div class="cientifico">
+        <h2>Nikola Tesla (1856-1943)</h2>
+        <img src="imagenes/tesla.png" alt="Nikola Tesla" class="imagen">
+        <p><strong>Logros:</strong> Corriente alterna, radio, bobina de Tesla.</p>
+        <p>Tesla fue un genio pionero en la <strong>electricidad moderna</strong>. Desarrolló el sistema de <strong>corriente alterna</strong> (CA), esencial para la transmisión eléctrica a larga distancia, y realizó investigaciones sobre campos magnéticos, radiofrecuencias y tecnología inalámbrica.</p>
+        <canvas id="teslaCanvas"></canvas>
+    </div>
+
+    <!-- Albert Einstein -->
+    <div class="cientifico">
+        <h2>Albert Einstein (1879-1955)</h2>
+        <img src="imagenes/einstein.png" alt="Albert Einstein" class="imagen">
+        <p><strong>Logros:</strong> Relatividad, efecto fotoeléctrico, E=mc².</p>
+        <p>Einstein revolucionó la física con la <strong>Teoría de la Relatividad</strong>, cambiando nuestra comprensión del espacio, el tiempo y la gravedad. Su ecuación <strong>E=mc²</strong> estableció la equivalencia entre energía y masa. Ganó el Premio Nobel por su explicación del <strong>efecto fotoeléctrico</strong>, base de la física cuántica.</p>
+        <canvas id="einsteinCanvas"></canvas>
+    </div>
+
+    <!-- James Clerk Maxwell -->
+    <div class="cientifico">
+        <h2>James Clerk Maxwell (1831-1879)</h2>
+        <img src="imagenes/maxwell.png" alt="James Clerk Maxwell" class="imagen">
+        <p><strong>Logros:</strong> Unificación de la electricidad y el magnetismo.</p>
+        <p>Maxwell formuló las <strong>ecuaciones del electromagnetismo</strong> que describen cómo se generan y propagan los campos eléctricos y magnéticos. Su trabajo unificó estos fenómenos y predijo que la luz es una <strong>onda electromagnética</strong>.</p>
+        <canvas id="maxwellCanvas"></canvas>
+    </div>
+
+    <!-- Botones -->
+    <button class="boton" onclick="narrarTodo()">Escuchar toda la historia</button>
+    <a href="index.html" class="boton">Volver al Inicio</a>
+
+    <!-- Scripts de animaciones + narración -->
+    <script>
+        // Newton: Manzana cayendo
+        const newtonCanvas = document.getElementById("newtonCanvas");
+        const newtonCtx = newtonCanvas.getContext("2d");
+        newtonCanvas.width = 300;
+        newtonCanvas.height = 200;
+        let appleY = 20;
+        function drawNewton() {
+            newtonCtx.clearRect(0, 0, newtonCanvas.width, newtonCanvas.height);
+            newtonCtx.fillStyle = "green";
+            newtonCtx.fillRect(140, appleY, 20, 20);
+            if (appleY < 160) appleY += 2;
+            requestAnimationFrame(drawNewton);
+        }
+        drawNewton();
+
+        // Tesla: Rayos eléctricos
+        const teslaCanvas = document.getElementById("teslaCanvas");
+        const teslaCtx = teslaCanvas.getContext("2d");
+        teslaCanvas.width = 300;
+        teslaCanvas.height = 200;
+        function drawTesla() {
+            teslaCtx.clearRect(0, 0, teslaCanvas.width, teslaCanvas.height);
+            teslaCtx.strokeStyle = "purple";
+            teslaCtx.lineWidth = 3;
+            teslaCtx.beginPath();
+            teslaCtx.moveTo(150, 50);
+            for (let i = 0; i < 10; i++) {
+                let x = 150 + (Math.random() * 80 - 40);
+                let y = 50 + i * 15;
+                teslaCtx.lineTo(x, y);
+            }
+            teslaCtx.stroke();
+            requestAnimationFrame(drawTesla);
+        }
+        drawTesla();
+
+        // Einstein: Curvatura del espacio-tiempo
+        const einsteinCanvas = document.getElementById("einsteinCanvas");
+        const einsteinCtx = einsteinCanvas.getContext("2d");
+        einsteinCanvas.width = 300;
+        einsteinCanvas.height = 200;
+        let timeRadius = 40;
+        function drawEinstein() {
+            einsteinCtx.clearRect(0, 0, einsteinCanvas.width, einsteinCanvas.height);
+            einsteinCtx.beginPath();
+            einsteinCtx.arc(150, 100, timeRadius, 0, Math.PI * 2);
+            einsteinCtx.strokeStyle = "yellow";
+            einsteinCtx.lineWidth = 3;
+            einsteinCtx.stroke();
+            timeRadius = 40 + Math.sin(Date.now() / 500) * 10;
+            requestAnimationFrame(drawEinstein);
+        }
+        drawEinstein();
+
+        // Maxwell: Ondas electromagnéticas
+        const maxwellCanvas = document.getElementById("maxwellCanvas");
+        const maxwellCtx = maxwellCanvas.getContext("2d");
+        maxwellCanvas.width = 300;
+        maxwellCanvas.height = 200;
+        let waveOffset = 0;
+        function drawMaxwell() {
+            maxwellCtx.clearRect(0, 0, maxwellCanvas.width, maxwellCanvas.height);
+            for (let i = 0; i < maxwellCanvas.width; i++) {
+                let y = 100 + Math.sin((i + waveOffset) * 0.1) * 20;
+                maxwellCtx.fillStyle = "blue";
+                maxwellCtx.fillRect(i, y, 2, 2);
+            }
+            waveOffset += 2;
+            requestAnimationFrame(drawMaxwell);
+        }
+        drawMaxwell();
+
+        // Narración de voz
+        function narrarTodo() {
+            const texto = `
+                Isaac Newton fue un físico, matemático y astrónomo británico que vivió entre 1643 y 1727. Es conocido por formular las tres leyes del movimiento y la ley de la gravitación universal. También hizo contribuciones significativas en óptica y cálculo.
+                Nikola Tesla fue un inventor y científico que vivió entre 1856 y 1943. Es célebre por su desarrollo del sistema de corriente alterna, así como por sus estudios sobre campos electromagnéticos y tecnología inalámbrica.
+                Albert Einstein, nacido en 1879 y fallecido en 1955, revolucionó la física con la teoría de la relatividad. Su ecuación E igual a m c al cuadrado cambió la forma en que entendemos la energía y la masa. También fue galardonado con el Premio Nobel por su explicación del efecto fotoeléctrico.
+                James Clerk Maxwell, que vivió entre 1831 y 1879, fue un físico escocés que formuló las ecuaciones del electromagnetismo. Estas ecuaciones unificaron los fenómenos eléctricos y magnéticos, demostrando que la luz es una onda electromagnética.
+                Todos estos científicos marcaron un antes y un después en la historia de la física, y sus descubrimientos siguen siendo fundamentales para nuestra comprensión del universo.
+            `;
+            const narrador = new SpeechSynthesisUtterance(texto);
+            narrador.lang = "es-ES";
+            narrador.pitch = 1;
+            narrador.rate = 1;
+            narrador.volume = 1;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(narrador);
+        }
+    </script>
+
+<script>
+    // Detener el audio si el usuario sale de la página
+    window.addEventListener("beforeunload", () => {
+        speechSynthesis.cancel();
+    });
+
+    // También se detiene en navegadores que usan 'pagehide' (mejor compatibilidad)
+    window.addEventListener("pagehide", () => {
+        speechSynthesis.cancel();
+    });
+</script>
+<br>
+<br>
+ <!-- Menú de navegación -->
+      <div id="menu">
+        <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+        <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+        <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+        <a class="menu-item optica" href="optica.html">Óptica</a>
+        <a class="menu-item acustica" href="acustica.html">Acústica</a>
+        <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+        <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+        <a class="menu-item padres_fisica" href="steam.html">Metodología STEAM</a>
+        <!--  <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> -->
+          <!--<a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>-->
+         <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+    </div>
+
+    <br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

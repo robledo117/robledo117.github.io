@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Física Cuántica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #4e2541, #1d016f);
+            text-align: center;
+            background-color: #0a0a2a;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
+        }
+
+        /* Recuadro para el contenido */
+        #info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(138, 43, 226, 0.5);
+            max-width: 800px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .imagen {
+            width: 400px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(138, 43, 226, 0.5);
+              
+             display: block;
+             margin: 0 auto;
+
+        }
+
+        /* Recuadro para el botón */
+        .boton {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 8px rgba(138, 43, 226, 0.5);
+            text-decoration: none;
+        }
+
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #5d1ca4;
+        }
+
+        canvas {
+            border: 2px solid white;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: black;
+        }
+
+        #animacion-info {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #dcdcdc;
+            font-style: italic;
+        }
+
+        /* Sección adicional de información */
+        .seccion {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(138, 43, 226, 0.5);
+            max-width: 800px;
+        }
+
+        .seccion h2 {
+            font-size: 24px;
+            color: #8a2be2;
+        }
+
+        .seccion ul {
+            font-size: 18px;
+        }
+
+        .seccion p {
+            font-size: 18px;
+        }
+
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+
+
+
+
+        
+        
+        .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    </style>
+</head>
+<body>
+
+<br>
+<br>
+
+    <h1>Física Cuántica</h1>
+
+    <div id="info">
+        <p>
+            La <strong>física cuántica</strong> es la rama de la física que estudia el comportamiento de las partículas subatómicas. 
+            Revoluciona nuestra comprensión de la realidad al introducir conceptos como:
+        </p>
+        <ul>
+            <li><strong>Dualidad onda-partícula:</strong> Los electrones pueden comportarse como partículas y ondas al mismo tiempo.</li>
+            <li><strong>Principio de incertidumbre:</strong> Es imposible conocer simultáneamente la posición y la velocidad de una partícula con total precisión.</li>
+            <li><strong>Superposición cuántica:</strong> Un sistema puede existir en múltiples estados a la vez hasta que es observado.</li>
+            <li><strong>Entrelazamiento cuántico:</strong> Dos partículas pueden estar conectadas instantáneamente sin importar la distancia que las separe.</li>
+        </ul>
+        <img src="imagenes/cuantica1.gif" alt="Ilustración de física cuántica" class="imagen">
+    </div>
+
+    <div class="seccion">
+        <h2>Aplicaciones de la Física Cuántica</h2>
+        <p>La física cuántica no solo ha cambiado nuestra visión del mundo, sino que también tiene aplicaciones prácticas que afectan nuestra vida diaria. Algunas de ellas incluyen:</p>
+        <ul>
+            <li><strong>Computación cuántica:</strong> Permite resolver problemas extremadamente complejos a una velocidad mucho mayor que los ordenadores tradicionales.</li>
+            <li><strong>Criptografía cuántica:</strong> Utiliza los principios de la física cuántica para crear sistemas de comunicación completamente seguros.</li>
+            <li><strong>Medicina:</strong> La resonancia magnética (RM) y la tomografía por emisión de positrones (PET) utilizan principios de la física cuántica para obtener imágenes detalladas del cuerpo humano.</li>
+            <li><strong>Transporte cuántico:</strong> Conceptos como el entrelazamiento cuántico podrían revolucionar las redes de comunicaciones y el transporte de información a través de largas distancias sin perder calidad.</li>
+        </ul>
+    </div>
+ <img src="imagenes/cuantica.gif" alt="Ilustración de física cuántica" class="imagen">
+    <div class="seccion">
+        <h2>Conceptos Avanzados</h2>
+        <p>La física cuántica es una teoría compleja y fascinante que continúa evolucionando. Aquí algunos conceptos más avanzados que se exploran en esta disciplina:</p>
+        <ul>
+            <li><strong>Teoría de campos cuánticos:</strong> Describe las interacciones fundamentales entre partículas subatómicas como campos dinámicos.</li>
+            <li><strong>Teoría de cuerdas:</strong> Propone que las partículas subatómicas no son puntos, sino pequeñas cuerdas vibrantes cuyas diferentes vibraciones corresponden a diferentes partículas.</li>
+            <li><strong>Modelo estándar:</strong> Es la teoría que describe cómo interactúan las partículas subatómicas a través de las fuerzas fundamentales conocidas hasta el momento.</li>
+        </ul>
+    </div>
+
+
+
+    <!-- Botones para lector de voz -->
+    <div>
+        <button class="boton" onclick="iniciarLectura()">Iniciar Lectura</button>
+        <button class="boton" onclick="pausarLectura()"> Pausa/Reanuda Lectura</button>
+    </div>
+
+
+
+
+    <!-- Animación: Dualidad Onda-Partícula -->
+    <canvas id="cuanticaCanvas"></canvas>
+    <p id="animacion-info">
+        ⚛️ La animación representa la **dualidad onda-partícula**, mostrando electrones moviéndose en forma de ondas. ⚛️
+
+    </p>
+
+
+
+
+<div class="video-container">
+  <iframe
+    src="https://www.youtube.com/watch?v=8urGTdEioOQ"
+    title="FISICA CUANTICA | Videos Educativos para niños"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+    
+    <!-- Botón para abrir el enlace de YouTube -->
+    <a href="https://www.youtube.com/watch?v=uHrCIWsxMt0" class="boton" target="_blank">Ver Video sobre Física Cuántica</a>
+
+<div class="seccion">
+<h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+  🧪 Conclusión: ¿Qué es la física cuántica?
+</h2>
+<p>
+  La <strong>física cuántica</strong> es una rama de la física que estudia el comportamiento de la materia y la energía a escalas extremadamente pequeñas, como átomos y partículas subatómicas. A diferencia de la física clásica, la cuántica revela un mundo donde las reglas comunes dejan de aplicarse y los fenómenos son regidos por la probabilidad.
+</p>
+<p>
+  Conceptos fundamentales como la <strong>dualidad onda-partícula</strong>, la <strong>superposición</strong> y el <strong>entrelazamiento cuántico</strong> han revolucionado nuestra comprensión del universo, desafiando nuestras ideas intuitivas sobre el tiempo, el espacio y la realidad.
+</p>
+<p>
+  La física cuántica no solo ha transformado la ciencia, sino que también ha impulsado avances tecnológicos fundamentales en la computación cuántica, la criptografía, la medicina (como la resonancia magnética), y el desarrollo de materiales avanzados.
+</p>
+<p>
+  En resumen, la física cuántica nos muestra que el universo es mucho más complejo y fascinante de lo que parece a simple vista. A través de ella, la humanidad ha expandido sus fronteras del conocimiento hacia lo invisible, lo impredecible y lo profundamente misterioso.
+</p>
+<img src="imagenes/cuantica33.gif" alt="Ilustración de física cuántica" class="imagen">
+</div>
+
+
+
+
+
+
+
+    <a href="index.html" class="boton">Volver al Inicio</a>
+
+    <script>
+        const canvas = document.getElementById("cuanticaCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 600;
+        canvas.height = 400;
+
+        let particles = [];
+
+        function createParticles() {
+            for (let i = 0; i < 10; i++) {
+                particles.push({
+                    x: 100 + i * 50,
+                    y: canvas.height / 2,
+                    radius: 5,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: 0.05 + Math.random() * 0.05,
+                    amplitude: 30 + Math.random() * 20,
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dibujar líneas de referencia
+            ctx.strokeStyle = "rgba(138, 43, 226, 0.3)";
+            ctx.beginPath();
+            ctx.moveTo(50, canvas.height / 2);
+            ctx.lineTo(canvas.width - 50, canvas.height / 2);
+            ctx.stroke();
+            ctx.closePath();
+
+            // Dibujar electrones en forma de ondas
+            particles.forEach(particle => {
+                particle.y = canvas.height / 2 + Math.sin(particle.angle) * particle.amplitude;
+                particle.angle += particle.speed;
+
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#8a2be2"; // Color morado
+                ctx.fill();
+                ctx.closePath();
+            });
+
+            requestAnimationFrame(drawParticles);
+        }
+
+        createParticles();
+        drawParticles();
+    </script>
+     <!-- Menú de navegación -->
+     <div id="menu">
+        <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+        <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+       <!-- <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a> -->
+        <a class="menu-item optica" href="optica.html">Óptica</a>
+        <a class="menu-item acustica" href="acustica.html">Acústica</a>
+        <a class="menu-item fisiCuantica" href="steam.html">Metodología STEAM</a>
+        <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>
+        <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+        <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a>
+        
+        
+    </div>
+
+    <script>
+    const texto = `
+        La física cuántica es la rama de la física que estudia el comportamiento de las partículas subatómicas.
+        Dualidad onda-partícula, principio de incertidumbre, superposición cuántica, entrelazamiento cuántico.
+        Aplicaciones como la computación cuántica, criptografía cuántica, medicina y transporte cuántico.
+        Conceptos avanzados incluyen teoría de campos cuánticos, teoría de cuerdas, y el modelo estándar.
+    `;
+
+    let utterance = new SpeechSynthesisUtterance(texto);
+    utterance.lang = "es-ES";
+    let enLectura = false;
+
+    function iniciarLectura() {
+        if (!enLectura) {
+            speechSynthesis.speak(utterance);
+            enLectura = true;
+        }
+    }
+
+    function pausarLectura() {
+        if (speechSynthesis.speaking) {
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+            } else {
+                speechSynthesis.pause();
+            }
+        }
+    }
+</script>
+
+
+<br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

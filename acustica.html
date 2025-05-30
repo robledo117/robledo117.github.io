@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acústica</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #41413f, #f5a75a);
+            background-color: #001f3f;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #00d4ff;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        #info {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 212, 255, 0.5);
+            max-width: 800px;
+            text-align: justify;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .imagen {
+            width: 400px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 212, 255, 0.5);
+              
+             display: block;
+             margin: 0 auto;
+
+        }
+        .boton {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #00d4ff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #0077b6;
+        }
+        canvas {
+            border: 2px solid #00d4ff;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        #animacion-info {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #bbb;
+            font-style: italic;
+        }
+
+
+
+   #voiceButton, #pauseButton {
+        background-color: #4CAF50; /* Verde educativo */
+        border: none;
+        color: white;
+        padding: 15px 25px;
+        margin: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        font-family: 'Arial', sans-serif;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 6px #3e8e41;
+        transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    #voiceButton:hover, #pauseButton:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+
+    #voiceButton:active, #pauseButton:active {
+        box-shadow: 0 4px #2e7031;
+        transform: scale(0.98);
+
+
+
+
+
+
+
+    }
+        .menu-item {
+            padding: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 125px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .mecanica { background-color: #ff4500; }
+        .termodinamica { background-color: #ff8c00; }
+        .electromagnetismo { background-color: #1e90ff; }
+        .optica { background-color: #ffd700; color: #000; }
+        .acustica { background-color: #32cd32; }
+        .fisiCuantica { background-color: #9400d3; }
+        .relatividad { background-color: #8b0000; }
+        .padres_fisica { background-color: #8b4513; }
+        .mecanica_fluidos { background-color: #00ced1; }
+
+
+
+
+
+        .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* Relación 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    </style>
+</head>
+<body>
+ 
+<br>
+<h1>Acústica</h1>
+
+<div id="info">
+    <p>
+        La <strong>acústica</strong> es la rama de la física que estudia el sonido: cómo se <em>genera</em>, <em>viaja</em> por distintos medios y cómo lo <em>percibimos</em> con nuestros oídos.
+        Esta ciencia es esencial en áreas como la <strong>música</strong>, la <strong>ingeniería de sonido</strong>, la <strong>medicina</strong> (con ultrasonidos), y hasta en la <strong>arquitectura</strong> para diseñar espacios con buena acústica.
+    </p>
+<img src="imagenes/sonido.png" alt="Ilustración de ondas sonoras" class="imagen">
+    <ul>
+        <li><strong>Frecuencia:</strong> Determina el <u>tono</u> del sonido. Una frecuencia alta produce sonidos agudos (como un silbido) y una baja, sonidos graves (como un tambor).</li>
+        <li><strong>Amplitud:</strong> Se relaciona con la <u>intensidad</u> o volumen. A mayor amplitud, más fuerte percibimos el sonido.</li>
+        <li><strong>Velocidad del sonido:</strong> Cambia según el medio. En el aire viaja a aprox. 343 m/s, pero en el agua o en metales, ¡viaja mucho más rápido!</li>
+        <li><strong>Reflexión del sonido:</strong> Ocurre cuando el sonido rebota en una superficie dura. Este fenómeno genera ecos.</li>
+        <li><strong>Absorción del sonido:</strong> Algunos materiales (como alfombras o cortinas) reducen el rebote del sonido, ayudando a evitar ruidos molestos.</li>
+        <li><strong>Timbre:</strong> Permite distinguir entre dos sonidos con la misma frecuencia. Por ejemplo, un piano y una guitarra pueden tocar la misma nota, pero suenan distinto.</li>
+    </ul>
+<br>
+<br>
+    <img src="imagenes/acustica.jpg" alt="Ilustración de ondas sonoras" class="imagen">
+
+    <!-- Tarjeta "¿Sabías que?" -->
+    <div style="background: #000306d3; border-left: 6px solid #0d6efd; padding: 16px; margin-top: 24px; border-radius: 8px;">
+        <h3 style="margin-top: 0;">¿Sabías que...?</h3>
+        <p>
+            ¡El sonido viaja más rápido en el agua que en el aire! Por eso, los delfines y ballenas pueden comunicarse a largas distancias bajo el mar.
+            Además, el murciélago utiliza la acústica para "ver" en la oscuridad mediante un sistema natural llamado <strong>ecolocalización</strong>.
+        </p>
+    </div>
+</div>
+<br>
+    <button id="voiceButton">Escuchar explicación</button>
+    <button id="pauseButton">Pausar/Reanudar voz</button>
+    <br>
+<br>
+<br>
+    <!-- Animación: Propagación de ondas sonoras -->
+    <canvas id="acusticaCanvas"></canvas>
+    <p id="animacion-info">
+        🔊 La animación muestra cómo **las ondas sonoras se expanden en el aire** a medida que viajan. 🔊
+    </p>
+
+
+<br>
+<br>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/xQBeSWXFVd8" 
+      title="EL SONIDO para niños: Intensidad, tono y timbre"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+<br>
+<br>
+    <!-- Animación: Arpa Interactiva -->
+    <h2>Arpa Interactiva</h2>
+    <div id="info">
+        <br>
+        <p>
+            Interactúa con las cuerdas del arpa y observa cómo se mueven al hacer clic. 
+            Además, escucharás un sonido cada vez que las cuerdas se muevan.
+        </p>
+    </div>
+<br>
+<br>
+<br>
+    <canvas id="arpaCanvas"></canvas>
+    <p id="animacion-info">
+        🔊 Haz clic y mueve el ratón sobre las cuerdas para interactuar con ellas. 🔊
+    </p>
+<br>
+<br>
+<div id="info">
+
+    <br>
+    <br>
+    <h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+  🎵 
+</h2>
+<br>
+
+
+<p>
+  Comprender la acústica permite explicar fenómenos cotidianos como el eco, la resonancia o la forma en que escuchamos música y voces. También es fundamental para el diseño de espacios como teatros, salas de conciertos, estudios de grabación y entornos industriales donde el control del sonido es esencial.
+</p>
+<p>
+  La acústica se aplica en campos tan diversos como la medicina (ecografías), la ingeniería (aislamiento y diseño sonoro), la música, la arquitectura y la tecnología (micrófonos, altavoces y sensores ultrasónicos).
+</p>
+<p>
+  En resumen, la acústica nos permite entender el sonido como una forma de energía y comunicación. Gracias a sus principios, no solo mejoramos nuestra calidad de vida, sino que también desarrollamos tecnologías que amplían nuestras capacidades sensoriales y comunicativas.
+</p>
+<br>
+<br>
+
+<img src="imagenes/sonido1.webp" alt="Ilustración de ondas sonoras" class="imagen">
+</div>
+<br>
+<br>
+<div class="video-container">
+
+  <iframe
+    src="https://www.youtube.com/embed/-zWDkzggPUk"
+    title="EL SONIDO | Videos Educativos para niños"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="info">
+<h2 style="color: #00bfff; text-align: center; text-shadow: 1px 1px 8px rgba(0,191,255,0.4);">
+  🔊  ¿Qué llevamos aprendido sobre la acústica?
+</h2>
+<p>
+  Este campo nos permite analizar desde el canto de un ave hasta el diseño de salas de conciertos o el funcionamiento de dispositivos como los micrófonos y altavoces. Además, la acústica tiene aplicaciones importantes en medicina (como los ultrasonidos), ingeniería, música y telecomunicaciones.
+</p>
+<p>
+  En resumen, la acústica nos muestra que el sonido es más que una vibración: es una herramienta de comunicación, exploración y arte. Comprenderla nos ayuda a apreciar mejor el mundo que nos rodea y a desarrollar tecnologías que mejoran nuestra calidad de vida.
+</p>
+</div>
+<br>
+<br>
+    <a href="index.html" class="boton">Volver al Inicio</a>
+    <br>
+    <br>
+
+    <script>
+        const canvas = document.getElementById("acusticaCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 600;
+        canvas.height = 400;
+
+        let waves = [];
+
+        for (let i = 0; i < 6; i++) {
+            waves.push({ radius: i * 15, alpha: 1 - i * 0.15 });
+        }
+
+        function drawWaves() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dibujar el altavoz
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2);
+            ctx.fillStyle = "#00d4ff"; // Azul brillante para el altavoz
+            ctx.fill();
+            ctx.closePath();
+
+            // Dibujar las ondas sonoras
+            waves.forEach(wave => {
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, wave.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(0, 212, 255, ${wave.alpha})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.closePath();
+
+                wave.radius += 1;
+                wave.alpha -= 0.005;
+
+                if (wave.alpha <= 0) {
+                    wave.radius = 15;
+                    wave.alpha = 1;
+                }
+            });
+
+            requestAnimationFrame(drawWaves);
+        }
+
+        drawWaves();
+
+        // Arpa interactiva
+        const arpaCanvas = document.getElementById("arpaCanvas");
+        const arpaCtx = arpaCanvas.getContext("2d");
+        const numCuerdas = 6;
+        const cuerdas = [];
+        const audio = new Audio('cuerda.mp3'); // Cambia el archivo de sonido a tu preferencia
+
+        arpaCanvas.width = 600;
+        arpaCanvas.height = 400;
+
+        // Propiedades del arpa
+        const xStart = 100;
+        const xEnd = 500;
+        const yStart = 50;
+        const yEnd = arpaCanvas.height - 50;
+        const cuerdaGap = (yEnd - yStart) / (numCuerdas + 1);
+
+        // Dibujar el marco del arpa
+        function drawFrame() {
+            arpaCtx.beginPath();
+            arpaCtx.moveTo(xStart, yStart);
+            arpaCtx.lineTo(xEnd, yStart);
+            arpaCtx.lineTo(xEnd, yEnd);
+            arpaCtx.lineTo(xStart, yEnd);
+            arpaCtx.closePath();
+            arpaCtx.strokeStyle = '#00d4ff';
+            arpaCtx.lineWidth = 3;
+            arpaCtx.stroke();
+        }
+
+        // Función para dibujar las cuerdas
+        function drawStrings() {
+            cuerdas.forEach(cuerda => {
+                arpaCtx.beginPath();
+                arpaCtx.moveTo(cuerda.xStart, cuerda.yStart);
+                arpaCtx.bezierCurveTo(
+                    cuerda.controlX1, cuerda.controlY1,
+                    cuerda.controlX2, cuerda.controlY2,
+                    cuerda.xEnd, cuerda.yEnd
+                );
+                arpaCtx.strokeStyle = "#fff";
+                arpaCtx.lineWidth = 2;
+                arpaCtx.stroke();
+            });
+        }
+
+        // Crear las cuerdas
+        function createStrings() {
+            cuerdas.length = 0; // Limpiar cuerdas previas
+            for (let i = 0; i < numCuerdas; i++) {
+                const y = yStart + (i + 1) * cuerdaGap;
+                const controlX1 = xStart + 50;
+                const controlY1 = y - 40;
+                const controlX2 = xEnd - 50;
+                const controlY2 = y + 40;
+                cuerdas.push({
+                    xStart: xStart, yStart: y, xEnd: xEnd, yEnd: y,
+                    controlX1, controlY1, controlX2, controlY2
+                });
+            }
+        }
+
+        // Función para manejar la interacción con el mouse
+        arpaCanvas.addEventListener('mousemove', (event) => {
+            const mouseY = event.clientY - arpaCanvas.getBoundingClientRect().top;
+            cuerdas.forEach(cuerda => {
+                const yDistance = Math.abs(mouseY - cuerda.yStart);
+                if (yDistance <= 15) {  // Si el mouse está cerca de la cuerda
+                    cuerda.controlY1 = mouseY - 40;
+                    cuerda.controlY2 = mouseY + 40;
+                    audio.play(); // Reproducir el sonido de la cuerda
+                }
+            });
+        });
+
+        // Función para actualizar el dibujo
+        function draw() {
+            arpaCtx.clearRect(0, 0, arpaCanvas.width, arpaCanvas.height);
+            drawFrame();
+            drawStrings();
+            requestAnimationFrame(draw);
+        }
+
+        // Inicializar las cuerdas y comenzar la animación
+        createStrings();
+        draw();
+
+        // Reproductor de voz
+        const voiceButton = document.getElementById('voiceButton');
+
+        voiceButton.addEventListener('click', () => {
+            const textToRead = `
+            La acústica, es la rama de la física y una ciencia que estudia el sonido, su producción, transmisión, recepción, percepción,
+                
+                El sonido se clasifica en frecuencia, amplitud y velocidad, y también tiene características como 
+                la reflexión y absorción.
+            `;
+
+            const speech = new SpeechSynthesisUtterance(textToRead);
+            speech.lang = 'es-ES'; // Idioma español
+            speech.volume = 1; // Volumen al máximo
+            speech.rate = 1; // Velocidad normal
+            speech.pitch = 1; // Tono normal
+
+            // Reproducir el texto
+            window.speechSynthesis.speak(speech);
+        });
+    </script>
+
+<script>
+    // Detener el audio si el usuario sale de la página
+    window.addEventListener("beforeunload", () => {
+        speechSynthesis.cancel();
+    });
+
+    // También se detiene en navegadores que usan 'pagehide' (mejor compatibilidad)
+    window.addEventListener("pagehide", () => {
+        speechSynthesis.cancel();
+    });
+</script>
+
+<script>
+    let utterance;
+    let isPaused = false;
+
+    document.getElementById('voiceButton').addEventListener('click', () => {
+        // Si ya está hablando, no volver a crear otra voz
+        if (speechSynthesis.speaking && !speechSynthesis.paused) return;
+
+        const texto = `
+        La acústica es la rama de la física que estudia el sonido: cómo se genera, viaja por distintos medios y cómo lo percibimos con nuestros oídos.
+        Se relaciona con conceptos como la frecuencia, la amplitud, la velocidad del sonido, el eco y la absorción.
+        Gracias a la acústica, podemos mejorar el sonido en teatros, usar ultrasonidos en medicina y entender cómo nos comunicamos mediante ondas sonoras.
+        También permite el desarrollo de instrumentos musicales y tecnologías como micrófonos o altavoces.
+        En resumen, la acústica nos ayuda a comprender el sonido como energía y como medio de comunicación.
+        `;
+
+        // Solo crear una nueva si no se ha creado ya
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'es-ES';
+        utterance.pitch = 1;
+        utterance.rate = 1;
+
+        speechSynthesis.speak(utterance);
+    });
+
+    document.getElementById('pauseButton').addEventListener('click', () => {
+        if (speechSynthesis.speaking) {
+            if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+                isPaused = false;
+                document.getElementById('pauseButton').innerText = "Pausar";
+            } else {
+                speechSynthesis.pause();
+                isPaused = true;
+                document.getElementById('pauseButton').innerText = "Reanudar";
+            }
+        }
+    });
+</script>
+
+<br>
+<br>
+ <!-- Menú de navegación -->
+ <div id="menu">
+    <a class="menu-item mecanica" href="mecanica.html">Mecánica</a>
+    <a class="menu-item termodinamica" href="termodinamica.html">Termodinámica</a>
+    <a class="menu-item electromagnetismo" href="electromagnetismo.html">Electromagnetismo</a>
+    <a class="menu-item optica" href="optica.html">Óptica</a>
+   <!-- <a class="menu-item acustica" href="acustica.html">Acústica</a>-->
+    <a class="menu-item fisiCuantica" href="fisiCuantica.html">Física Cuántica</a>
+   <!--  <a class="menu-item relatividad" href="relatividad.html">Relatividad</a>-->
+    <a class="menu-item padres_fisica" href="padres_fisica.html">Padres de la Física</a>
+     <a class="menu-item mecanica_fluidos" href="mecanica_fluidos.html">Mecánica de Fluidos</a> 
+      <a class="menu-item mecanica_computacional" href="mecanica_computacional.html">Mecánica Computacional</a>
+     <!-- <a class="menu-item youtube" href="https://www.youtube.com/">YouTube</a> -->
+</div>
+<br>
+    <br>
+      <footer>
+    © 2025 Proyecto Educativo de Robótica. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Física Interactiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="animation3D.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 400vh;
+            z-index: -1;
+        }
+
+        #threeCanvas {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 260vh;
+            left: 0;
+            z-index: -1;
+        }
+
+        header {
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.837);
+            box-shadow: 0 4px 10px rgba(235, 4, 4, 0.979);
+            border-bottom: 5px solid #6c6b6864;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #f8f7f4;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        section.info-container {
+            position: relative;
+            padding: 40px;
+            text-align: center;
+        }
+
+        section.info-container h2 {
+            font-size: 2em;
+            color: #f8f7f4;
+            margin-bottom: 20px;
+        }
+
+        section.info-container p {
+            font-size: 1.2em;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            padding: 50px 0;
+            position: relative;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-item {
+            padding: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .menu-item img {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:nth-child(1) { background: #e00606; }
+        .menu-item:nth-child(2) { background: #1e90ff; }
+        .menu-item:nth-child(3) { background: #32cd32; }
+        .menu-item:nth-child(4) { background: #ff6347; }
+        .menu-item:nth-child(5) { background: #9a4de3; }
+        .menu-item:nth-child(6) { background: #ff4500; }
+        .menu-item:nth-child(7) { background: #2e8b57; }
+        .menu-item:nth-child(8) { background: #3544ec; }
+        .menu-item:nth-child(9) { background: #6e02a4; }
+        .menu-item:nth-child(10) { background: #dc143c; }
+        .menu-item:nth-child(11) { background: #cbdc14; }
+        .menu-item:nth-child(12) { background: #000000; }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+            background-color: #444;
+        }
+
+        .menu-item:hover img {
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        footer {
+            padding: 20px;
+            background: #000000;
+            color: white;
+            font-size: 1.1em;
+            border-top: 5px solid #ffcc0006;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header>
+        <h1>Explora el Mundo de la Física</h1>
+        <p>Interactúa con conceptos clave a través de animaciones y modelos dinámicos.</p>
+    </header>
+
+    <section class="info-container">
+        <div id="threeCanvas"></div>
+        <h2>¿Qué es la Física?</h2>
+        <p>La física es una ciencia fundamental que estudia las leyes que rigen la materia, la energía y sus interacciones. Es una disciplina de las ciencias naturales que intenta comprender cómo funciona el universo en el nivel más fundamental. A través de la física, se exploran conceptos como la gravedad, el movimiento, las fuerzas, el tiempo, el espacio y la energía. Es, en muchos aspectos, la base sobre la que se construyen las demás ciencias naturales, como la química y la biología.</p>
+        <p>Los físicos intentan formular teorías y leyes que describan los fenómenos naturales de manera precisa y matemática. Estas teorías y leyes se validan a través de experimentos y observaciones. Algunas de las teorías más conocidas en física incluyen la teoría de la relatividad de Einstein, la teoría cuántica y las leyes del movimiento de Newton.</p>
+        <p>Una característica fundamental de la física es su capacidad para prever y explicar una gran variedad de fenómenos, desde las pequeñas partículas subatómicas hasta los grandes movimientos de las galaxias. Además, la física es crucial para el avance tecnológico y para comprender el funcionamiento de las fuerzas y sistemas que gobiernan nuestro entorno natural.</p>
+    
+        <h2>¿Para qué sirve la Física?</h2>
+        <p>La física tiene aplicaciones en muchas áreas de nuestra vida diaria, desde la tecnología que utilizamos, como los smartphones, hasta la medicina, donde se emplean principios físicos para realizar diagnósticos y tratamientos. Sin la física, no tendríamos avances como la electricidad, los dispositivos electrónicos, los radares, las telecomunicaciones o los sistemas de navegación por satélite.</p>
+        <p>En la medicina, por ejemplo, la física es esencial en la creación de técnicas como la resonancia magnética (RM), los rayos X y la tomografía computarizada (TC). Estos procedimientos utilizan principios de la física para visualizar el interior del cuerpo humano, permitiendo diagnósticos precisos y la planificación de tratamientos.</p>
+        <p>En la ingeniería, los principios físicos se utilizan para diseñar estructuras, máquinas y sistemas eficientes, como en la construcción de puentes, aviones y sistemas de energía renovable. Además, la física está en el corazón de tecnologías emergentes como la nanotecnología, la computación cuántica y la inteligencia artificial.</p>
+        <p>Otro ejemplo importante de la utilidad de la física es en el área de las energías renovables. Las investigaciones sobre el uso de energía solar, eólica y de fusión nuclear están guiadas por principios físicos fundamentales que permiten maximizar la eficiencia de las fuentes de energía limpias y reducir el impacto ambiental.</p>
+        <p>Así, la física no solo mejora nuestras vidas cotidianas, sino que también tiene el poder de transformar el futuro al proporcionar soluciones a los desafíos más grandes que enfrenta la humanidad, como el cambio climático y la escasez de recursos energéticos.</p>
+    
+        <h2>¿En qué se ocupa la Física?</h2>
+        <p>La física es esencial en campos como la ingeniería, la investigación científica, la medicina, la informática, la astronomía, y muchos más, proporcionando las bases para la innovación tecnológica y el progreso en diversas disciplinas. Además, la física abarca una gran variedad de subcampos especializados que permiten comprender fenómenos en diferentes escalas y contextos.</p>
+        <p>Algunos de los principales campos de estudio dentro de la física incluyen:</p>
+     
+       </section>
+    
+
+    <section class="menu-container">
+        <div class="menu-grid">
+            <a href="mecanica.html" class="menu-item"><img src="iconos/mecanica.png" alt="Icono Mecánica">Mecánica</a>
+            <a href="termodinamica.html" class="menu-item"><img src="iconos/termodinamica.png" alt="Icono Termodinámica">Termodinámica</a>
+            <a href="electromagnetismo.html" class="menu-item"><img src="iconos/electromagnetismo.png" alt="Icono Electromagnetismo">Electromagnetismo</a>
+            <a href="optica.html" class="menu-item"><img src="iconos/optica.png" alt="Icono Óptica">Óptica</a>
+            <a href="acustica.html" class="menu-item"><img src="iconos/acustica.png" alt="Icono Acústica">Acústica</a>
+            <a href="fisiCuantica.html" class="menu-item"><img src="iconos/cuantica.png" alt="Icono Física Cuántica">Física Cuántica</a>
+            <a href="relatividad.html" class="menu-item"><img src="iconos/relatividad.png" alt="Icono Relatividad">Relatividad</a>
+            <a href="padres_fisica.html" class="menu-item"><img src="iconos/padres.png" alt="Icono Grandes Físicos">Grandes Físicos</a>
+            <a href="mecanica_fluidos.html" class="menu-item"><img src="iconos/fluidos.png" alt="Icono Mecánica de Fluidos">Mecánica de Fluidos</a>
+            <a href="steam.html" class="menu-item"><img src="iconos/computacional.png" alt="Icono Mecánica Computacional">Metodología STEAM</a>
+            <a href="formulario.html" class="menu-item"><img src="iconos/formulario.png" alt="Icono Prueba">Prueba de Conocimientos</a>
+            <a href="brazo.html" class="menu-item"><img src="iconos/mecanica.png" alt="Icono Prueba">BRAZO ROBOTICO</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Física Interactiva | Creado para aprender con animaciones</p>
+        <p>© Elaborado por: ANGEL ALAIN ALCOCER ROBLEDO | goliath.2000@hotmail.com</p>
+        <img src="escLogo.png" alt="Logo de la escuela" width="100" height="100" class="footer-logo">
+        <p>ESCUELA NORMAL URBANA FEDERAL PROF. RAFAEL RAMIREZ</p>
+    </footer>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
+                opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'window',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
