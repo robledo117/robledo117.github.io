@@ -210,7 +210,7 @@
     let nivel = "";
     if (calificacion === 100) nivel = "Avanzado";
     else if (calificacion >= 70) nivel = "Intermedio";
-    else nivel = "Básico";
+    else nivel = "Deficiente";
 
     document.getElementById("resultado").innerHTML =
       `<strong>¡Muy bien ${nombreDelNino}!</strong><br>Tu calificación es: <strong>${calificacion.toFixed(2)}%</strong><br>Nivel: <strong>${nivel}</strong>`;
@@ -227,15 +227,15 @@
     doc.setFillColor(255, 243, 224);
     doc.rect(0, 0, 210, 297, 'F');
 
-    const imgEstrella = await cargarImagenBase64('iconos/estrella.png');
-    const imgSello = await cargarImagenBase64('iconos/sello.png');
+    const imgEstrella = await cargarImagenBase64('iconos/mecanica.png');
+    const imgSello = await cargarImagenBase64('iconos/formulario.png');
 
     if (imgEstrella) doc.addImage(imgEstrella, 'PNG', 85, 10, 40, 40);
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(28);
     doc.setTextColor(255, 152, 0);
-    doc.text("🏅 DIPLOMA DE FÍSICA 🏅", 105, 60, null, null, "center");
+    doc.text("DIPLOMA DE FÍSICA", 105, 60, null, null, "center");
 
     doc.setFontSize(16);
     doc.setTextColor(0);
